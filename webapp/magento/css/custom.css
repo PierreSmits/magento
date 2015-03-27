@@ -1,0 +1,28 @@
+label.error {color:#FF0000;}
+.asterisk {color: #FF0000;}
+.chosen-container.chosen-container-multi, .search-field .default {width: 100% !important;}
+a.disabled {cursor: not-allowed;opacity: 0.65;pointer-events: none;}
+.navbar-brand .fa-gears {color:red;}
+
+/* Overlays */
+.ui-widget-overlay { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background: #aaaaaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x; 
+  opacity: .30;
+  filter:Alpha(Opacity=30);
+}
+
+.divider-vertical{
+  border-right: 1px solid #CCCCCC;
+}
+
+.dialog-ajax-loader {margin-left: 47.8%;}
+
+/*To revert overriding of the rule caused by bootstrap css*/
+.label {
+  color : #000;
+}

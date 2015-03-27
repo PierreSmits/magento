@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+    <service name="importInventoryFromMagento" engine="java" auth="true" transaction-timeout="7200"
+           location="org.ofbiz.magento.InventoryServices" invoke="importInventoryFromMagento">
+       <description>Receive inventory of each product from magento given facility</description>
+       <attribute name="facilityId" type="String" mode="IN"/>
+    </service>
+
+    <service name="loadWarehouseLocations" engine="java" auth="true" transaction-timeout="600"
+            location="org.ofbiz.magento.InventoryServices" invoke="loadAndImportWarehouseLocations">
+        <description>Load product facility location by supplied CSV file.</description>
+        <required-permissions join-type="AND">
+            <check-permission permission="CATALOG" action="_CREATE"/>
+            <check-permission permission="CATALOG" action="_UPDATE"/>
+        </required-permissions>
+        <implements service="uploadFileInterface" />
+        <attribute name="facilityId" type="String" mode="INOUT" optional="true"/>
+        <attribute name="contentId" type="String" mode="IN" optional="true"/>
+        <attribute name="loadFileContent" type="String" mode="OUT" optional="true"/>
+        <attribute name="productFacilityLocations" type="List" mode="OUT" optional="true"/>
+        <attribute name="processData" type="String" mode="IN" default-value="N"/>
+        <attribute name="isError" type="String" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="importWarehouseLocations" engine="java" auth="true" max-retry="0" transaction-timeout="7200"
+            location="org.ofbiz.magento.InventoryServices" invoke="loadAndImportWarehouseLocations">
+        <description>Create/Update product facility location by supplied CSV file.</description>
+        <required-permissions join-type="AND">
+            <check-permission permission="CATALOG" action="_CREATE"/>
+            <check-permission permission="CATALOG" action="_UPDATE"/>
+        </required-permissions>
+        <attribute name="facilityId" type="String" mode="INOUT" optional="true"/>
+        <attribute name="processData" type="String" mode="IN" default-value="Y"/>
+        <attribute name="productFacilityLocations" type="List" mode="OUT" optional="true"/>
+        <attribute name="processedProductFacilityLocations" type="List" mode="OUT" optional="true"/>
+        <attribute name="contentId" type="String" mode="IN" optional="true"/>
+        <attribute name="isError" type="String" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="createUpdateProductFacilityAndLocation" engine="java" auth="true" 
+            location="org.ofbiz.magento.InventoryServices" invoke="createUpdateProductFacilityAndLocation">
+        <description>Create/Update product facility and locations.</description>
+        <attribute name="productId" type="String" mode="IN"/>
+        <attribute name="facilityId" type="String" mode="IN"/>
+        <attribute name="locationSeqId" type="String" mode="IN"/>
+        <attribute name="areaId" type="String" mode="IN" optional="true"/>
+        <attribute name="aisleId" type="String" mode="IN" optional="true"/>
+        <attribute name="sectionId" type="String" mode="IN" optional="true"/>
+        <attribute name="levelId" type="String" mode="IN" optional="true"/>
+        <attribute name="positionId" type="String" mode="IN" optional="true"/>
+        <attribute name="inventoryCount" type="String" mode="IN"/>
+    </service>
+</services>

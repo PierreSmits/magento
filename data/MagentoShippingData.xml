@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-engine-xml>
+    <Party partyId="USPS" partyTypeId="PARTY_GROUP"/>
+    <Party partyId="UPS" partyTypeId="PARTY_GROUP"/>
+    <Party partyId="DHL" partyTypeId="PARTY_GROUP"/>
+    <Party partyId="FEDEX" partyTypeId="PARTY_GROUP"/>
+    <Party partyId="_NA_" partyTypeId="PERSON"/>
+
+    <Person partyId="_NA_"/>
+    <PartyGroup partyId="USPS" groupName="USPS"/>
+    <PartyGroup partyId="UPS" groupName="UPS"/>
+    <PartyGroup partyId="DHL" groupName="DHL"/>
+    <PartyGroup partyId="FEDEX" groupName="Federal Express"/>
+
+    <PartyRole partyId="USPS" roleTypeId="CARRIER"/>
+    <PartyRole partyId="UPS" roleTypeId="CARRIER"/>
+    <PartyRole partyId="DHL" roleTypeId="CARRIER"/>
+    <PartyRole partyId="FEDEX" roleTypeId="CARRIER"/>
+    <PartyRole partyId="_NA_" roleTypeId="CARRIER"/>
+
+    <!-- Shipping method for flat rate -->
+    <ShipmentMethodType description="Flat Rate" shipmentMethodTypeId="FLAT_RATE"/>
+    <CarrierShipmentMethod partyId="_NA_" roleTypeId="CARRIER" shipmentMethodTypeId="FLAT_RATE" sequenceNumber="10" carrierServiceCode=""/>
+
+    <ShipmentMethodType description="Next Morning" shipmentMethodTypeId="NEXT_AM"/>
+    <ShipmentMethodType description="Next Afternoon" shipmentMethodTypeId="NEXT_PM"/>
+    <ShipmentMethodType description="Same Day" shipmentMethodTypeId="SAME_DAY"/>
+    <ShipmentMethodType description="Guaranteed Next Day" shipmentMethodTypeId="NEXT_DAY"/>
+    <ShipmentMethodType description="Air" shipmentMethodTypeId="AIR"/>
+    <ShipmentMethodType description="Third Day" shipmentMethodTypeId="THIRD_DAY"/>
+    <ShipmentMethodType description="International Express" shipmentMethodTypeId="INT_EXPRESS"/>
+
+    <ShipmentMethodType description="Priority Overnight" shipmentMethodTypeId="PR_OVERNIGHT"/>
+    <ShipmentMethodType description="Standard Overnight" shipmentMethodTypeId="ST_OVERNIGHT"/>
+    <ShipmentMethodType description="First Overnight" shipmentMethodTypeId="FI_OVERNIGHT"/>
+    <ShipmentMethodType description="Second Day" shipmentMethodTypeId="SECOND_DAY"/>
+    <ShipmentMethodType description="Express Saver" shipmentMethodTypeId="EXPRESS_SAVER"/>
+    <ShipmentMethodType description="International Priority" shipmentMethodTypeId="INTERNAT_PRI"/>
+    <ShipmentMethodType description="International Economy" shipmentMethodTypeId="INTERNAT_ECON"/>
+    <ShipmentMethodType description="International First" shipmentMethodTypeId="INTERNAT_FI"/>
+    <ShipmentMethodType description="1Day Freight" shipmentMethodTypeId="FIRST_DAY_FR"/>
+    <ShipmentMethodType description="2Day Freight" shipmentMethodTypeId="SECOND_DAY_FR"/>
+    <ShipmentMethodType description="3Day Freight" shipmentMethodTypeId="THIRD_DAY_FR"/>
+    <ShipmentMethodType description="Ground" shipmentMethodTypeId="GROUND"/>
+    <ShipmentMethodType description="Ground Home Delivery" shipmentMethodTypeId="GROUND_HOME"/>
+    <ShipmentMethodType description="International Economy Freight" shipmentMethodTypeId="INTERNAT_ECON_FR"/>
+    <ShipmentMethodType description="International Priority Freight" shipmentMethodTypeId="INTERNAT_PRI_FR"/>
+    <ShipmentMethodType description="2Day AM" shipmentMethodTypeId="SECOND_DAY_AM"/>
+    <ShipmentMethodType description="Europe First Priority" shipmentMethodTypeId="EUROPE_FI_PRIORITY"/>
+    <ShipmentMethodType description="Smart Post" shipmentMethodTypeId="SMART_POST"/>
+    <ShipmentMethodType description="Fedex National Freight" shipmentMethodTypeId="FEDEX_NATIONAL_FR"/>
+    <ShipmentMethodType description="Fedex International Ground " shipmentMethodTypeId="FEDEX_INT_GROUND"/>
+    <ShipmentMethodType description="Fedex Freight" shipmentMethodTypeId="FEDEX_FREIGHT"/>
+
+    <ShipmentMethodType description="Standard" shipmentMethodTypeId="STANDARD"/>
+    <ShipmentMethodType description="Three-Day Select" shipmentMethodTypeId="THIRD_DAY_AIR_SEL"/>
+    <ShipmentMethodType description="Second Day Air" shipmentMethodTypeId="SECOND_DAY_AIR"/>
+    <ShipmentMethodType description="Second Day Air Early A.M.  " shipmentMethodTypeId="SECOND_DAY_AIR_AM"/>
+    <ShipmentMethodType description="Next Day Air Saver" shipmentMethodTypeId="NEXT_DAY_AIR_SA"/>
+    <ShipmentMethodType description="Next Day Air" shipmentMethodTypeId="NEXT_DAY_AIR"/>
+    <ShipmentMethodType description="Next Day Air Early A.M." shipmentMethodTypeId="NEXT_DAY_AIR_AM"/>
+    <ShipmentMethodType description="Worldwide ExpressSM" shipmentMethodTypeId="WORLDWIDE_EXPRESS"/>
+    <ShipmentMethodType description="Worldwide Express Plus" shipmentMethodTypeId="WORLDWIDE_EXPR_PLUS"/>
+    <ShipmentMethodType description="Worldwide ExpeditedSM" shipmentMethodTypeId="WORLDWIDE_EXPEDITED"/>
+    <ShipmentMethodType description="Saver" shipmentMethodTypeId="SAVER"/>
+
+    <ShipmentMethodType description="First Class" shipmentMethodTypeId="FIRST_CLASS"/>
+    <ShipmentMethodType description="First Class International" shipmentMethodTypeId="FC_INTERNATIONAL"/>
+    <ShipmentMethodType description="Priority" shipmentMethodTypeId="PRIORITY"/>
+    <ShipmentMethodType description="Priority International" shipmentMethodTypeId="PR_INTERNATIONAL"/>
+    <ShipmentMethodType description="Express" shipmentMethodTypeId="EXPRESS"/>
+    <ShipmentMethodType description="Express International" shipmentMethodTypeId="EXP_INTERNATIONAL"/>
+    <ShipmentMethodType description="Media Mail" shipmentMethodTypeId="MEDIA_MAIL"/>
+    <ShipmentMethodType description="Standard Post" shipmentMethodTypeId="STANDARD_POST"/>
+    <ShipmentMethodType description="Library" shipmentMethodTypeId="LIBRARY"/>
+
+    <ShipmentMethodType description="Express Saturday" shipmentMethodTypeId="EXP_SATURDAY"/>
+    <ShipmentMethodType description="Express 10.30 AM" shipmentMethodTypeId="EXP_10_30_AM"/>
+
+    <!-- Local options -->
+    <ShipmentMethodType description="No Shipping" shipmentMethodTypeId="NO_SHIPPING"/>
+    <CarrierShipmentMethod partyId="_NA_" roleTypeId="CARRIER" shipmentMethodTypeId="STANDARD" sequenceNumber="5"/>
+    <CarrierShipmentMethod partyId="_NA_" roleTypeId="CARRIER" shipmentMethodTypeId="NO_SHIPPING" sequenceNumber="5"/>
+
+    <!-- Fedex shipping options -->
+    <CarrierShipmentMethod shipmentMethodTypeId="PR_OVERNIGHT" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="01" carrierServiceCode="PRIORITYOVERNIGHT"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="ST_OVERNIGHT" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="02" carrierServiceCode="STANDARDOVERNIGHT"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="FI_OVERNIGHT" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="03" carrierServiceCode="FIRSTOVERNIGHT"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="SECOND_DAY" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="04" carrierServiceCode="FEDEX2DAY"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="EXPRESS_SAVER" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="05" carrierServiceCode="FEDEXEXPRESSSAVER"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="FIRST_DAY_FR" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="06" carrierServiceCode="FEDEX1DAYFREIGHT"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="SECOND_DAY_FR" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="07" carrierServiceCode="FEDEX2DAYFREIGHT"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="THIRD_DAY_FR" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="08" carrierServiceCode="FEDEX3DAYFREIGHT"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="GROUND" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="09" carrierServiceCode="FEDEXGROUND"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="GROUND_HOME" partyId="FEDEX" roleTypeId="CARRIER"  sequenceNumber="10" carrierServiceCode="GROUNDHOMEDELIVERY"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="SECOND_DAY_AM" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="11" carrierServiceCode="SECONDDAYAM"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="SMART_POST" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="12" carrierServiceCode="SMARTPOST"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="FEDEX_NATIONAL_FR" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="13" carrierServiceCode="FEDEXNATIONALFREIGHT"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="FEDEX_FREIGHT" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="14" carrierServiceCode="FEDEXFREIGHT"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="FEDEX_INT_GROUND" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="15" carrierServiceCode="INTERNATIONALGROUND"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="INTERNAT_PRI" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="16" carrierServiceCode="INTERNATIONALPRIORITY"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="INTERNAT_ECON" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="17" carrierServiceCode="INTERNATIONALECONOMY"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="INTERNAT_FI" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="18" carrierServiceCode="INTERNATIONALFIRST"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="INTERNAT_ECON_FR" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="19" carrierServiceCode="INTERNATIONALECONOMYFREIGHT"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="INTERNAT_PRI_FR" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="20" carrierServiceCode="INTERNATIONALPRIORITYFREIGHT"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="EUROPE_FI_PRIORITY" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="21" carrierServiceCode="EUROPEFIRSTINTERNATIONALPRIORITY"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="NEXT_AM" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="22" carrierServiceCode="FIRSTOVERNIGHT"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="NEXT_PM" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="23" carrierServiceCode="STANDARDOVERNIGHT"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="SAME_DAY" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="24" carrierServiceCode="SAMEDAY"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="NEXT_DAY" partyId="FEDEX" roleTypeId="CARRIER" sequenceNumber="25" carrierServiceCode="PRIORITYOVERNIGHT"/>
+
+    <!-- UPS shipping options -->
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="STANDARD" sequenceNumber="01" carrierServiceCode="11"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="THIRD_DAY_AIR_SEL" sequenceNumber="02" carrierServiceCode="12"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="SECOND_DAY_AIR" sequenceNumber="03" carrierServiceCode="02"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="SECOND_DAY_AIR_AM" sequenceNumber="04" carrierServiceCode="59"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="NEXT_DAY_AIR_SA" sequenceNumber="05" carrierServiceCode="13"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="NEXT_DAY_AIR" sequenceNumber="06" carrierServiceCode="01"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="NEXT_DAY_AIR_AM" sequenceNumber="07" carrierServiceCode="14"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="WORLDWIDE_EXPRESS" sequenceNumber="08" carrierServiceCode="07"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="WORLDWIDE_EXPR_PLUS" sequenceNumber="09" carrierServiceCode="54"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="WORLDWIDE_EXPEDITED" sequenceNumber="10" carrierServiceCode="08"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="SAVER" sequenceNumber="11" carrierServiceCode="65"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="GROUND" sequenceNumber="12" carrierServiceCode="03"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="AIR" sequenceNumber="13" carrierServiceCode="02"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="THIRD_DAY" sequenceNumber="14" carrierServiceCode="THIRDDAY"/>
+
+    <!-- End of UPS Data -->
+
+    <!-- USPS Data -->
+    <!-- For USPS, only certain container types are allowed for rate estimates of Priority or Express service codes -->
+    <!-- <CarrierShipmentMethod partyId="USPS" roleTypeId="CARRIER" shipmentMethodTypeId="STANDARD" sequenceNumber="7" carrierServiceCode="Parcel"/> -->
+    <CarrierShipmentMethod shipmentMethodTypeId="FIRST_CLASS" partyId="USPS" roleTypeId="CARRIER" sequenceNumber="01" carrierServiceCode="FIRST CLASS"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="FC_INTERNATIONAL" partyId="USPS" roleTypeId="CARRIER" sequenceNumber="02" carrierServiceCode="FIRST CLASS"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="PRIORITY" partyId="USPS" roleTypeId="CARRIER" sequenceNumber="03" carrierServiceCode="PRIORITY"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="PR_INTERNATIONAL" partyId="USPS" roleTypeId="CARRIER" sequenceNumber="04" carrierServiceCode="PRIORITY"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="EXPRESS" partyId="USPS" roleTypeId="CARRIER" sequenceNumber="05" carrierServiceCode="EXPRESS"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="EXP_INTERNATIONAL" partyId="USPS" roleTypeId="CARRIER" sequenceNumber="06" carrierServiceCode="EXPRESS"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="MEDIA_MAIL" partyId="USPS" roleTypeId="CARRIER" sequenceNumber="07" carrierServiceCode="MEDIA"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="STANDARD_POST" partyId="USPS" roleTypeId="CARRIER" sequenceNumber="08" carrierServiceCode="STANDARD POST"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="LIBRARY" partyId="USPS" roleTypeId="CARRIER" sequenceNumber="09" carrierServiceCode="LIBRARY"/>
+    <CarrierShipmentMethod shipmentMethodTypeId="INT_EXPRESS" partyId="USPS" roleTypeId="CARRIER" sequenceNumber="10" carrierServiceCode="INTEXPRESS"/>
+    <!-- End of USPS Data-->
+
+    <!-- DHL shipping options -->
+    <CarrierShipmentMethod partyId="DHL" roleTypeId="CARRIER" shipmentMethodTypeId="INT_EXPRESS" sequenceNumber="1" carrierServiceCode="IE"/>
+    <CarrierShipmentMethod partyId="DHL" roleTypeId="CARRIER" shipmentMethodTypeId="EXP_SATURDAY" sequenceNumber="2" carrierServiceCode="E SAT"/>
+    <CarrierShipmentMethod partyId="DHL" roleTypeId="CARRIER" shipmentMethodTypeId="EXP_10_30_AM" sequenceNumber="3" carrierServiceCode="E 10.30 AM"/>
+    <CarrierShipmentMethod partyId="DHL" roleTypeId="CARRIER" shipmentMethodTypeId="EXPRESS" sequenceNumber="4" carrierServiceCode="E"/>
+    <CarrierShipmentMethod partyId="DHL" roleTypeId="CARRIER" shipmentMethodTypeId="NEXT_PM" sequenceNumber="5" carrierServiceCode="N"/>
+    <CarrierShipmentMethod partyId="DHL" roleTypeId="CARRIER" shipmentMethodTypeId="SECOND_DAY" sequenceNumber="6" carrierServiceCode="S"/>
+    <CarrierShipmentMethod partyId="DHL" roleTypeId="CARRIER" shipmentMethodTypeId="GROUND" sequenceNumber="7" carrierServiceCode="G"/>
+    <!-- End of DHL Data-->
+
+    <!-- Magento shipping options mapping  -->
+    <SystemProperty systemResourceId="Magento" systemPropertyId="flatrate" systemPropertyValue="FLAT_RATE"/>
+
+    <!-- Fedex Data-->
+    <!-- Mapping of magento shipping methods to OFBiz shipmentMethodTypeId -->
+    <SystemProperty systemResourceId="Magento" systemPropertyId="PRIORITY_OVERNIGHT" systemPropertyValue="PR_OVERNIGHT"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="STANDARD_OVERNIGHT" systemPropertyValue="ST_OVERNIGHT"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="FIRST_OVERNIGHT" systemPropertyValue="FI_OVERNIGHT"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="FEDEX_2_DAY" systemPropertyValue="SECOND_DAY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="FEDEX_EXPRESS_SAVER" systemPropertyValue="EXPRESS_SAVER"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INTERNATIONAL_PRIORITY" systemPropertyValue="INTERNAT_PRI"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INTERNATIONAL_ECONOMY" systemPropertyValue="INTERNAT_ECON"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INTERNATIONAL_FIRST" systemPropertyValue="INTERNAT_FI"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="FEDEX_1_DAY_FREIGHT" systemPropertyValue="FIRST_DAY_FR"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="FEDEX_2_DAY_FREIGHT" systemPropertyValue="SECOND_DAY_FR"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="FEDEX_3_DAY_FREIGHT" systemPropertyValue="THIRD_DAY_FR"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="FEDEX_GROUND" systemPropertyValue="GROUND"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="GROUND_HOME_DELIVERY" systemPropertyValue="GROUND_HOME"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INTERNATIONAL_PRIORITY_FREIGHT" systemPropertyValue="INTERNAT_PRI_FR"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INTERNATIONAL_ECONOMY_FREIGHT" systemPropertyValue="INTERNAT_ECON_FR"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="FEDEX_2_DAY_AM" systemPropertyValue="SECOND_DAY_AM"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="EUROPE_FIRST_INTERNATIONAL_PRIORITY" systemPropertyValue="EUROPE_FI_PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="SMART_POST" systemPropertyValue="SMART_POST"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="FEDEX_NATIONAL_FREIGHT" systemPropertyValue="FEDEX_NATIONAL_FR"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INTERNATIONAL_GROUND" systemPropertyValue="FEDEX_INT_GROUND"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="FEDEX_FREIGHT" systemPropertyValue="FEDEX_FREIGHT"/>
+    <!-- End of Fedex Data-->
+
+    <!-- UPS Data -->
+    <SystemProperty systemResourceId="Magento" systemPropertyId="STD" systemPropertyValue="STANDARD"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="GND" systemPropertyValue="GROUND"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="GNDCOM" systemPropertyValue="GROUND"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="GNDRES" systemPropertyValue="GROUND"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="3DS" systemPropertyValue="THIRD_DAY_AIR_SEL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="2DA" systemPropertyValue="SECOND_DAY_AIR"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="2DAL" systemPropertyValue="SECOND_DAY_AIR"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="2DM" systemPropertyValue="SECOND_DAY_AIR_AM"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="2DML" systemPropertyValue="SECOND_DAY_AIR_AM"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="1DP" systemPropertyValue="NEXT_DAY_AIR_SA"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="1DPL" systemPropertyValue="NEXT_DAY_AIR_SA"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="1DA" systemPropertyValue="NEXT_DAY_AIR"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="1DAL" systemPropertyValue="NEXT_DAY_AIR"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="1DAPI" systemPropertyValue="NEXT_DAY_AIR"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="1DM" systemPropertyValue="NEXT_DAY_AIR_AM"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="1DML" systemPropertyValue="NEXT_DAY_AIR_AM"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="XPR" systemPropertyValue="WORLDWIDE_EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="XPRL" systemPropertyValue="WORLDWIDE_EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="XDM" systemPropertyValue="WORLDWIDE_EXPR_PLUS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="XDML" systemPropertyValue="WORLDWIDE_EXPR_PLUS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="XPD" systemPropertyValue="WORLDWIDE_EXPEDITED"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="WXS" systemPropertyValue="SAVER"/>
+    <!-- End of UPS Data -->
+
+    <!-- USPS Data -->
+    <SystemProperty systemResourceId="Magento" systemPropertyId="0_FCLE" systemPropertyValue="FIRST_CLASS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="0_FCL" systemPropertyValue="FIRST_CLASS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="0_FCP" systemPropertyValue="FIRST_CLASS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="0_FCPC" systemPropertyValue="FIRST_CLASS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="15" systemPropertyValue="FIRST_CLASS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="53" systemPropertyValue="FIRST_CLASS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="61" systemPropertyValue="FIRST_CLASS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_13" systemPropertyValue="FC_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_14" systemPropertyValue="FC_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_15" systemPropertyValue="FC_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_21" systemPropertyValue="FC_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="1" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="16" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="17" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="22" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="28" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="29" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="30" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="31" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="32" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="33" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="34" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="35" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="36" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="37" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="38" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="39" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="40" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="41" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="42" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="43" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="44" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="45" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="46" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="47" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="48" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="49" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="50" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="58" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="59" systemPropertyValue="PRIORITY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_2" systemPropertyValue="PR_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_8" systemPropertyValue="PR_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_9" systemPropertyValue="PR_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_11" systemPropertyValue="PR_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_16" systemPropertyValue="PR_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_17" systemPropertyValue="PR_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_18" systemPropertyValue="PR_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_19" systemPropertyValue="PR_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_20" systemPropertyValue="PR_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_22" systemPropertyValue="PR_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_23" systemPropertyValue="PR_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_24" systemPropertyValue="PR_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_25" systemPropertyValue="PR_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="2" systemPropertyValue="EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="3" systemPropertyValue="EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="13" systemPropertyValue="EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="23" systemPropertyValue="EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="25" systemPropertyValue="EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="27" systemPropertyValue="EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="55" systemPropertyValue="EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="56" systemPropertyValue="EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="57" systemPropertyValue="EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="62" systemPropertyValue="EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="63" systemPropertyValue="EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="64" systemPropertyValue="EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_1" systemPropertyValue="EXP_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_4" systemPropertyValue="EXP_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_5" systemPropertyValue="EXP_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_6" systemPropertyValue="EXP_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_7" systemPropertyValue="EXP_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_10" systemPropertyValue="EXP_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_12" systemPropertyValue="EXP_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_26" systemPropertyValue="EXP_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="INT_27" systemPropertyValue="EXP_INTERNATIONAL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="6" systemPropertyValue="MEDIA_MAIL"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="4" systemPropertyValue="STANDARD_POST"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="7" systemPropertyValue="LIBRARY"/>
+    <!-- End of USPS Data-->
+
+    <!-- DHL Data -->
+    <SystemProperty systemResourceId="Magento" systemPropertyId="IE" systemPropertyValue="INT_EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="E SAT" systemPropertyValue="EXP_SATURDAY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="E 10:30 AM" systemPropertyValue="EXP_10_30_AM"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="E" systemPropertyValue="EXPRESS"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="N" systemPropertyValue="NEXT_PM"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="S" systemPropertyValue="SECOND_DAY"/>
+    <SystemProperty systemResourceId="Magento" systemPropertyId="G" systemPropertyValue="GROUND"/>
+    <!-- End of DHL Data -->
+
+</entity-engine-xml>

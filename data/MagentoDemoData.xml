@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <!-- User Data -->
+    <Party partyId="AndyC" partyTypeId="PERSON"/>
+    <Person firstName="Andy" lastName="Cepon" partyId="AndyC"/>
+    <RoleType roleTypeId="PICKER" description="Warehouse Picker"/>
+    <PartyRole partyId="AndyC" roleTypeId="PICKER"/>
+    <UserLogin userLoginId="AndyC" partyId="AndyC" currentPassword="{SHA}47ca69ebb4bdc9ae0adec130880165d2cc05db1a" enabled="Y"/>
+    <ContactMech contactMechId="AndyC" contactMechTypeId="EMAIL_ADDRESS" infoString="andy.cepon@demo.com"/>
+    <PartyContactMech partyId="AndyC" contactMechId="AndyC" fromDate="2013-07-04 00:00:00.0" allowSolicitation="Y"/>
+    <PartyContactMechPurpose contactMechPurposeTypeId="PRIMARY_EMAIL" partyId="AndyC" contactMechId="AndyC" fromDate="2013-07-04 00:00:00.0"/>
+
+    <Party partyId="admin" partyTypeId="PERSON"/>
+    <Person firstName="Admin" lastName="User" partyId="admin"/>
+    <Party partyId="system" partyTypeId="PERSON"/>
+    <Person partyId="system" firstName="System" lastName="Account"/>
+    <PartyRole partyId="admin" roleTypeId="MANAGER"/>
+    <PartyRole partyId="admin" roleTypeId="PACKER"/>
+    <PartyRole partyId="admin" roleTypeId="_NA_"/>
+    <PartyRole partyId="admin" roleTypeId="EMPLOYEE"/>
+    <PartyRole partyId="system" roleTypeId="OWNER"/>
+    <ContactMech contactMechId="admin" contactMechTypeId="EMAIL_ADDRESS" infoString="hwm.buynow@gmail.com"/>
+    <PartyContactMech partyId="admin" contactMechId="admin" fromDate="2003-01-01 00:00:00.0" allowSolicitation="Y"/>
+    <PartyContactMechPurpose contactMechPurposeTypeId="PRIMARY_EMAIL" partyId="admin" contactMechId="admin" fromDate="2003-01-01 00:00:00.0"/>
+
+    <UserLogin userLoginId="system" partyId="system" enabled="N" isSystem="Y"/>
+    <UserLogin userLoginId="admin" partyId="admin" currentPassword="{SHA}47ca69ebb4bdc9ae0adec130880165d2cc05db1a" enabled="Y" hasLoggedOut="N"/>
+
+</entity-engine-xml>

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <property key="CompanyName">
+        <value xml:lang="en">OFBiz: Magento</value>
+    </property>
+    <property key="CompanySubtitle">
+        <value xml:lang="en">Part of the Open For Business Family of Open Source Software</value>
+    </property>
+    <property key="MagentoAccessAccountNumber">
+        <value xml:lang="en">Access Account Number</value>
+    </property>
+    <property key="MagentoAccessLicenseNumber">
+        <value xml:lang="en">Access License Number</value>
+    </property>
+    <property key="MagentoAccessMeterNumber">
+        <value xml:lang="en">Access Meter Number</value>
+    </property>
+    <property key="MagentoAccessShippingKey">
+        <value xml:lang="en">Access Shipping Key</value>
+    </property>
+    <property key="MagentoAccessUserKey">
+        <value xml:lang="en">Access User Key</value>
+    </property>
+    <property key="MagentoAccessUserPassword">
+        <value xml:lang="en">Access User Password</value>
+    </property>
+    <property key="MagentoAction">
+        <value xml:lang="en">Action</value>
+    </property>
+    <property key="MagentoAddress">
+        <value xml:lang="en">Address</value>
+    </property>
+    <property key="MagentoApplication">
+        <value xml:lang="en">Magento Application</value>
+    </property>
+    <property key="MagentoCatalogSetup">
+        <value xml:lang="en">Catalog Setup</value>
+    </property>
+    <property key="MagentoChooseFileToBeUploaded">
+        <value xml:lang="en">Choose File To Be Uploaded</value>
+    </property>
+    <property key="MagentoCompanyAddress">
+        <value xml:lang="en">Company Address</value>
+    </property>
+    <property key="MagentoCompanyDetails">
+        <value xml:lang="en">Company Details</value>
+    </property>
+    <property key="MagentoCompanyName">
+        <value xml:lang="en">Company Name</value>
+    </property>
+    <property key="MagentoConfigurationHasBeenDoneSuccessfully">
+        <value xml:lang="en">Configuration has been done successfully.</value>
+    </property>
+    <property key="MagentoConnectUrl">
+        <value xml:lang="en">Connect Url</value>
+    </property>
+    <property key="MagentoConnectionWithMagentoIsTestedSuccessfully">
+        <value xml:lang="en">Connection with magento is tested successfully.</value>
+    </property>
+    <property key="MagentoCategoriesHaveBeenImportedSuccessfully">
+        <value xml:lang="en">Categories have been imported successfully.</value>
+    </property>
+    <property key="MagentoCreateNewProductStore">
+        <value xml:lang="en">Create New Product Store</value>
+    </property>
+    <property key="MagentoEmailAddress">
+        <value xml:lang="en">Email Address</value>
+    </property>
+    <property key="MagentoError">
+        <value xml:lang="en">Error</value>
+    </property>
+    <property key="MagentoErrorInConnectingWithMagento">
+        <value xml:lang="en">Error in connecting with Magento.</value>
+    </property>
+    <property key="MagentoErrorInGettingProductsFromMagento">
+        <value xml:lang="en">Error in getting products from Magento.</value>
+    </property>
+    <property key="MagentoErrorInResponseWriterOutputStream">
+        <value xml:lang="en">Error in response writer/output stream :</value>
+    </property>
+    <property key="MagentoErrorInUploadedCSV">
+        <value xml:lang="en">One or more rows in the uploaded CSV is having erroneous data, please correct it and then retry uploading CSV.</value>
+    </property>
+    <property key="MagentoErrorProductIdIsMissing">
+        <value xml:lang="en">Error : Product id is missing</value>
+    </property>
+    <property key="MagentoErrorProductIsAVirtualProduct">
+        <value xml:lang="en">Error : Product is a virtual product id [#${productId}]</value>
+    </property>
+    <property key="MagentoErrorProductNotFound">
+        <value xml:lang="en">Error : Product not found with id [#${productId}]</value>
+    </property>
+    <property key="MagentoErrorRenderingContent">
+        <value xml:lang="en">Error in rendering content :</value>
+    </property>
+    <property key="MagentoExportProductCountWithWarehouseLocation">
+        <value xml:lang="en">Export Product Count With Warehouse Location</value>
+    </property>
+    <property key="MagentoExportProductCountWithWarehouseLocationInfo">
+        <value xml:lang="en">Export a CSV for Product count with Product Id and associated Warehouse location. You can update this CSV and upload again to the OFBiz system in the next step "Update And Import The CSV With Warehouse Location".</value>
+    </property>
+    <property key="MagentoFacilityInformationIsAddedSuccessfully">
+        <value xml:lang="en">Facility information is added successfully.</value>
+    </property>
+    <property key="MagentoOrdersHasBeenImportedSuccessfully">
+        <value xml:lang="en">Orders has been imported successfully.</value>
+    </property>
+    <property key="MagentoOrdersHasBeenSynchronizedSuccessfully">
+        <value xml:lang="en">Orders has been synchronized successfully.</value>
+    </property>
+    <property key="MagentoSyncCancelledOrders">
+        <value xml:lang="en">Sync Cancelled Orders</value>
+    </property>
+    <property key="MagentoSyncCancelledOrdersInfo">
+        <value xml:lang="en">Synchronize orders cancelled at Magento store with OFBiz system.</value>
+    </property>
+    <property key="MagentoImportCategories">
+        <value xml:lang="en">Import Categories</value>
+    </property>
+    <property key="MagentoImportCategoryInfo">
+        <value xml:lang="en">Import the Product Categories from Magento store to OFBiz system.</value>
+    </property>
+    <property key="MagentoSyncHeldOrders">
+        <value xml:lang="en">Sync Held Orders</value>
+    </property>
+    <property key="MagentoSyncHeldOrdersInfo">
+        <value xml:lang="en">Synchronize orders held at Magento store with OFBiz system.</value>
+    </property>
+    <property key="MagentoImportInventoryCountFromMagentoStore">
+        <value xml:lang="en">Import Inventory Count From Magento Store</value>
+    </property>
+    <property key="MagentoImportInventoryCountFromMagentoStoreInfo">
+        <value xml:lang="en">Click on the Import button to maintain the Inventory count from Magento store to OFBiz System and update the latest inventory count for the selected warehouse.</value>
+    </property>
+    <property key="MagentoImportJobScheduledOrRunning">
+        <value xml:lang="en">Import Job Scheduled or Running</value>
+    </property>
+    <property key="MagentoImportLocations">
+        <value xml:lang="en">Import Locations</value>
+    </property>
+    <property key="MagentoImportMagentoStoreInformation">
+        <value xml:lang="en">Import Magento Store Information</value>
+    </property>
+    <property key="MagentoImportMagentoStoreInformationInfo">
+        <value xml:lang="en">Click here to begin with importing the data for Magento Store, Warehouse and Shipping methods to OFBiz system. This is a onetime data import process from Magento to OFBiz. Once you are in you can sync and update your Magento store Categories and Products to OFBiz system.</value>
+    </property>
+    <property key="MagentoImportPendingOrdersFromMagento">
+        <value xml:lang="en">Import Pending Orders From Magento</value>
+    </property>
+    <property key="MagentoImportPendingOrdersFromMagentoInfo">
+        <value xml:lang="en">Import pending orders from Magento store to OFBiz system.</value>
+    </property>
+    <property key="MagentoImportProducts">
+        <value xml:lang="en">Import Products</value>
+    </property>
+    <property key="MagentoImportProductInfo">
+        <value xml:lang="en">Import Category wise Products from Magento to OFBiz system.</value>
+    </property>
+    <property key="MagentoInvalidColumnFoundInCSV">
+        <value xml:lang="en">Invalid Column Found in CSV. Column Name :</value>
+    </property>
+    <property key="MagentoInvalidInventoryCount">
+        <value xml:lang="en">Inventory Count Value is not valid.</value>
+    </property>
+    <property key="MagentoInventoryCountIsMissing">
+        <value xml:lang="en">Inventory Count is missing.</value>
+    </property>
+    <property key="MagentoInventoryHasBeenImportedSuccessfully">
+        <value xml:lang="en">Inventory has been imported successfully.</value>
+    </property>
+    <property key="MagentoInventorySetup">
+        <value xml:lang="en">Inventory Setup</value>
+    </property>
+    <property key="MagentoJobId">
+        <value xml:lang="en">Job Id:</value>
+    </property>
+    <property key="MagentoLoadLocations">
+        <value xml:lang="en">Load Locations</value>
+    </property>
+    <property key="MagentoLocationSeqIdIsMissing">
+        <value xml:lang="en">Location Seq id is missing.</value>
+    </property>
+    <property key="MagentoLogFiles">
+        <value xml:lang="en">Log Files</value>
+    </property>
+    <property key="MagentoMagentoConfiguration">
+        <value xml:lang="en">Magento Configuration</value>
+    </property>
+    <property key="MagentoMagentoConnectUrl">
+        <value xml:lang="en">Magento Connect Url</value>
+    </property>MagentoMagentoIntegrationManager
+    <property key="MagentoMagentoIntegrationManager">
+        <value xml:lang="en">Magento Integration Manager</value>
+    </property>
+    <property key="MagentoManageProductFacilityLocation">
+        <value xml:lang="en">Manage Product Facility Location</value>
+    </property>
+    <property key="MagentoMagentoStoreAddress">
+        <value xml:lang="en">Magento Store Address</value>
+    </property>
+    <property key="MagentoMagentoStoreInformationHasBeenImportedSuccessfully">
+        <value xml:lang="en">Magento Store Information Has Been Imported Successfully</value>
+    </property>
+    <property key="MagentoNotLoaded">
+        <value xml:lang="en">Not Loaded</value>
+    </property>
+    <property key="MagentoNoErrorOrResultLogFilesExist">
+        <value xml:lang="en">No error or result log files exist</value>
+    </property>
+    <property key="MagentoPhone">
+        <value xml:lang="en">Phone</value>
+    </property>
+    <property key="MagentoNoDataExistsToProcess">
+        <value xml:lang="en">No data exists to process, please load the file first then import.</value>
+    </property>
+    <property key="MagentoNoDataIsAvailable">
+        <value xml:lang="en">No data is available.</value>
+    </property>
+    <property key="MagentoOrderManagementSystem">
+        <value xml:lang="en">Order Management System</value>
+    </property>
+    <property key="MagentoPleaseEnterFacilityLocation">
+        <value xml:lang="en">Please enter facility location.</value>
+    </property>
+    <property key="MagentoPleaseEnterQuantity">
+        <value xml:lang="en">Please enter quantity.</value>
+    </property>
+    <property key="MagentoPleaseSelectCSVFileForImport">
+        <value xml:lang="en">Please select CSV file for import.</value>
+    </property>
+    <property key="MagentoPleaseSelectTheFileInCSVFormat">
+        <value xml:lang="en">Please select the file in CSV format.</value>
+    </property>
+    <property key="MagentoPreviewProductFacilityLocations">
+        <value xml:lang="en">Preview product facility locations that will get imported, if you need to make changes reload the product facility location upload file.</value>
+    </property>
+    <property key="MagentoProductsHaveBeenImportedSuccessfully">
+        <value xml:lang="en">Products Have Been Imported Successfully</value>
+    </property>
+    <property key="ProductFacilityLocationImportResultSummary">
+        <value xml:lang="en">Product Facility Location Import Result Summary</value>
+    </property>
+    <property key="MagentoProductStore">
+        <value xml:lang="en">Product Store</value>
+    </property>
+    <property key="MagentoQtyRecRejCanNotBeZero">
+        <value xml:lang="en">Both quantity to accept and quantity to reject cannot be zero.</value>
+    </property>
+    <property key="MagentoRefreshPage">
+        <value xml:lang="en">Refresh Page</value>
+    </property>
+    <property key="MagentoRequiredFileNameNotFound">
+        <value xml:lang="en">Required file name not found!</value>
+    </property>
+    <property key="MagentoScheduleServices">
+        <value xml:lang="en">Schedule Services</value>
+    </property>
+    <property key="MagentoShippingGatewayConfigurationIsUpdatedSuccessfully">
+        <value xml:lang="en">Shipping gateway configuration is updated successfully.</value>
+    </property>
+    <property key="MagentoShippingMethod">
+        <value xml:lang="en">Shipping Method</value>
+    </property>
+    <property key="MagentoShippingMethodsAreAddedSuccessfully">
+        <value xml:lang="en">Shipping method are added successfully.</value>
+    </property>
+    <property key="MagentoShippingMethodIsRemovedSuccessfully">
+        <value xml:lang="en">Shipping method is removed succesfully.</value>
+    </property>
+    <property key="MagentoSoapUserName">
+        <value xml:lang="en">SOAP User Name</value>
+    </property>
+    <property key="MagentoStore">
+        <value xml:lang="en">Store</value>
+    </property>
+    <property key="MagentoEditStoreDetails">
+        <value xml:lang="en">Edit Store Details</value>
+    </property>
+    <property key="MagentoEditWarehouseDetails">
+        <value xml:lang="en">Edit Warehouse Details</value>
+    </property>
+    <property key="MagentoStoreInformationIsUpdatedSuccessfully">
+        <value xml:lang="en">Store information is updated successfully.</value>
+    </property>
+    <property key="MagentoStoreName">
+        <value xml:lang="en">Store Name</value>
+    </property>
+    <property key="MagentoSync">
+        <value xml:lang="en">Sync</value>
+    </property>
+    <property key="MagentoSyncCategories">
+        <value xml:lang="en">Sync Categories</value>
+    </property>
+    <property key="MagentoSyncCategoryInfo">
+        <value xml:lang="en">Click to start with the first time import for Categories from Magento store to OFBiz system and later synchronize the existing Categories. You can proceed further to Sync Product step after successful synchronization of Categories.   </value>
+    </property>
+    <property key="MagentoSyncProducts">
+        <value xml:lang="en">Sync Products</value>
+    </property>
+    <property key="MagentoSyncProductInfo">
+        <value xml:lang="en">After successful Category synchronization, click to start with the first time import for Products from Magento store to OFBiz system. Products can be synchronized once the initial Product data is imported.</value>
+    </property>
+    <property key="MagentoTestConnection">
+        <value xml:lang="en">Test Connection</value>
+    </property>
+    <property key="MagentoTestConnectionInfo">
+        <value xml:lang="en">Test whether connection from magento can be established or not.</value>
+    </property>
+    <property key="MagentoUnableToWriteContentToBrowser">
+        <value xml:lang="en">Unable to write content to browser.</value>
+    </property>
+    <property key="MagentoUpdateAndImportCSVWithWarehouseLocation">
+        <value xml:lang="en">Update And Import CSV With Warehouse Location</value>
+    </property>
+    <property key="MagentoUpdateAndImportCSVWithWarehouseLocationInfo">
+        <value xml:lang="en">Update the CSV exported from previous step "Export Product Count With Warehouse Location" with Product count, Warehouse location and Upload it to the OFBiz system. You can receive inventory in the selected warehouse, a new warehouse location for a product will be created in real-time if it is not in existence. Sync and reverse-sync will be done from OFBiz to Magento store and vice versa for the promised inventory count.  </value>
+    </property>
+    <property key="MagentoUpdateConfiguration">
+        <value xml:lang="en">Update Configuration</value>
+    </property>
+    <property key="MagentoWarehouse">
+        <value xml:lang="en">Warehouse</value>
+    </property>
+    <property key="MagentoWarehouseInformationIsUpdatedSuccessfully">
+        <value xml:lang="en">Warehouse information is updated successfully.</value>
+    </property>
+    <property key="MagentoWarehouseName">
+        <value xml:lang="en">Warehouse Name</value>
+    </property>
+</resource>

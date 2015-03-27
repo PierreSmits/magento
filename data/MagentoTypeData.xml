@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-engine-xml>
+    <Enumeration description="Magento Sales Channel" enumCode="MAGENTO_CHANNEL" enumId="MAGENTO_SALE_CHANNEL" sequenceId="01" enumTypeId="ORDER_SALES_CHANNEL"/>
+    <GoodIdentificationType description="Magento's Product Id" goodIdentificationTypeId="MAGENTO_ID" hasTable="N" parentTypeId=""/>
+    <PartyContentType partyContentTypeId="MAGENTO_STORE_ADDR" description="Magento Store Address"/>
+    <PaymentMethodType description="Magento Payment Method" paymentMethodTypeId="EXT_MAGENTO"/>
+    <PaymentMethodType description="Magento Credit Card" paymentMethodTypeId="EXT_MAGENTO_CC"/>
+    <PaymentMethodType description="Magento Cash On Delivery" paymentMethodTypeId="EXT_MAGENTO_COD"/>
+    <PaymentMethodType description="Magento Check/Money Order" paymentMethodTypeId="EXT_MAGENTO_CHECKMO"/>
+
+    <SystemProperty systemResourceId="Magento" systemPropertyId="magento.payment.method" systemPropertyValue="EXT_MAGENTO"/>
+
+    <!-- Uploaded CSV Product Facility content type data-->
+    <ContentType contentTypeId="PROD_FAC_CSV_CNT" description="Product Facility Location Upload Content" hasTable="N" parentTypeId="" />
+    <ContentType contentTypeId="PROD_FAC_CSV_LOG" description="Product Facility Location Upload Log" hasTable="N" parentTypeId="" />
+    <ContentAssocType contentAssocTypeId="PROD_FAC_CSV_RESULT" description="Product Facility Location Upload content results" />
+    <ContentAssocType contentAssocTypeId="PROD_FAC_CSV_ERROR" description="Product Facility Location Upload errors" />
+    <StatusType statusTypeId="PROD_FAC_CSV_STATUS" hasTable="N" description="Product Facility Location Uploaded CSV status" />
+    <StatusItem statusId="PROD_FAC_CSV_SUCCESS" statusTypeId="PROD_FAC_CSV_STATUS" description="Product Facility Location uploaded successfully" statusCode="COMPLETE" />
+    <StatusItem statusId="PROD_FAC_CSV_PARTIAL" statusTypeId="PROD_FAC_CSV_STATUS" description="Partial Product Facility Location upload" statusCode="PENDING" />
+    <StatusItem statusId="PROD_FAC_CSV_FAIL" statusTypeId="PROD_FAC_CSV_STATUS" description="Product Facility Location upload fail" statusCode="FAILED" />
+    <StatusItem statusId="PROD_FAC_CSV_INPRGRS" statusTypeId="PROD_FAC_CSV_STATUS" description="Product Facility Location upload is in progress" statusCode="QUEUED" />
+
+    <ProductAssocType productAssocTypeId="PRODUCT_SERVICE" description="Product Service" hasTable="N" />
+</entity-engine-xml>
