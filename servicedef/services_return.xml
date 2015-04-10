@@ -1,4 +1,5 @@
-<#--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
 distributed with this work for additional information
@@ -16,9 +17,12 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<#if !productFacilityUploadRunningJobs?has_content>
-  <#include "component://magento/webapp/magento/inventory/ImportWarehouseLocation.ftl" />
-  <#include "component://magento/webapp/magento/inventory/LogFiles.ftl" />
-<#else>
-  <#include "component://magento/webapp/magento/inventory/WarehouseLocationUploadsInProgress.ftl" />
-</#if>
+
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
+    <service name="createCreditMemoInMagento" engine="java" auth="true" transaction-timeout="7200"
+            location="org.ofbiz.magento.ReturnServices" invoke="createCreditMemoInMagento">
+        <attribute name="returnId" type="String" mode="IN"/>
+        <description>Create Credit Memo In Magento For Refund Return In Magento</description>
+    </service>
+</services>

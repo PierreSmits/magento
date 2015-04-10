@@ -1,3 +1,21 @@
+/*******************************************************************************
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *******************************************************************************/
 package org.ofbiz.magento;
 
 import java.net.URL;
@@ -845,6 +863,7 @@ public class StoreServices {
         result = ServiceUtil.returnSuccess(UtilProperties.getMessage(resource, "MagentoShippingGatewayConfigurationIsUpdatedSuccessfully", locale));
         result.put("partyId", carrierPartyId);
         result.put("productStoreId", (String) context.get("productStoreId"));
+        result.put("shipmentGatewayConfigId", shipmentGatewayConfigId);
         return result;
     }
     public static Map<String, Object> setupDefaultGeneralLedger (DispatchContext dctx, Map<String, Object> context) {
@@ -1019,6 +1038,42 @@ public class StoreServices {
                     List<StoreShippingMethodsEntity> shippingMethodListByCarrier = storeShippingMethodsEntityArray.getComplexObjectArray();
                     for (StoreShippingMethodsEntity shippingMethod : shippingMethodListByCarrier) {
                         String carrierCode = shippingMethod.getCarrierCode();
+
+                        serviceCtx.put("partyId", shippingMethod.getCarrierCode().toUpperCase());
+                        serviceCtx.put("productStoreId", productStoreId);
+                        serviceCtx.put("userLogin", userLogin);
+                        serviceCtx.put("accessPassword", shippingMethod.getPassword());
+                        serviceCtx.put("connectUrl", shippingMethod.getGatewayUrl());
+                        serviceCtx.put("accessLicenseNumber", shippingMethod.getAccessLicenseNumber());
+                        serviceCtx.put("accessAccountNbr", shippingMethod.getAccount());
+                        serviceCtx.put("accessMeterNumber", shippingMethod.getMeterNumber());
+
+                        String accessUserId = null;
+                        String shipmentGatewayConfigId = null;
+                        if ("UPS".equalsIgnoreCase(carrierCode)) {
+                            accessUserId = shippingMethod.getUsername();
+                            shipmentGatewayConfigId = "UPS_CONFIG";
+                        } else if ("USPS".equalsIgnoreCase(carrierCode)) {
+                            accessUserId = shippingMethod.getUserId();
+                            shipmentGatewayConfigId = "USPS_CONFIG";
+                        } else if ("DHL".equalsIgnoreCase(carrierCode)) {
+                            accessUserId = shippingMethod.getId();
+                            shipmentGatewayConfigId = "DHL_CONFIG";
+                        } else if ("FEDEX".equalsIgnoreCase(carrierCode)) {
+                            accessUserId = shippingMethod.getKey();
+                            shipmentGatewayConfigId = "FEDEX_CONFIG";
+                        } else {
+                            continue;
+                        }
+                        serviceCtx.put("shipmentGatewayConfigId", shipmentGatewayConfigId);
+                        serviceCtx.put("accessUserId", accessUserId);
+                        result = dispatcher.runSync("createUpdateShipmentGatewayConfig", serviceCtx);
+                        if (!ServiceUtil.isSuccess(result)) {
+                            Debug.logError(ServiceUtil.getErrorMessage(result), module);
+                            return ServiceUtil.returnError(ServiceUtil.getErrorMessage(result));
+                        }
+                        serviceCtx.clear();
+
                         if (UtilValidate.isNotEmpty(carrierCode)) {
                             if ("UPS".equalsIgnoreCase(carrierCode)) {
                                 serviceCtx.put("serviceName", "");
@@ -1031,6 +1086,7 @@ public class StoreServices {
                             } else  {
                                 continue;
                             }
+                            serviceCtx.put("shipmentGatewayConfigId", shipmentGatewayConfigId);
                             serviceCtx.put("partyId", shippingMethod.getCarrierCode().toUpperCase());
                             serviceCtx.put("productStoreId", productStoreId);
                             serviceCtx.put("roleTypeId", "CARRIER");
@@ -1053,34 +1109,7 @@ public class StoreServices {
                             return ServiceUtil.returnError(ServiceUtil.getErrorMessage(result));
                         }
                         serviceCtx.clear();
-                        
-                        serviceCtx.put("partyId", shippingMethod.getCarrierCode().toUpperCase());
-                        serviceCtx.put("productStoreId", productStoreId);
-                        serviceCtx.put("userLogin", userLogin);
-                        serviceCtx.put("accessPassword", shippingMethod.getPassword());
-                        serviceCtx.put("connectUrl", shippingMethod.getGatewayUrl());
-                        serviceCtx.put("accessLicenseNumber", shippingMethod.getAccessLicenseNumber());
-                        serviceCtx.put("accessAccountNbr", shippingMethod.getAccount());
-                        serviceCtx.put("accessMeterNumber", shippingMethod.getMeterNumber());
 
-                        String accessUserId = null;
-                        if ("UPS".equalsIgnoreCase(carrierCode)) {
-                            accessUserId = shippingMethod.getUsername();
-                        } else if ("USPS".equalsIgnoreCase(carrierCode)) {
-                            accessUserId = shippingMethod.getUserId();
-                        } else if ("DHL".equalsIgnoreCase(carrierCode)) {
-                            accessUserId = shippingMethod.getId();
-                        } else if ("FEDEX".equalsIgnoreCase(carrierCode)) {
-                            accessUserId = shippingMethod.getKey();
-                        }
-
-                        serviceCtx.put("accessUserId", accessUserId);
-                        result = dispatcher.runSync("createUpdateShipmentGatewayConfig", serviceCtx);
-                        if (!ServiceUtil.isSuccess(result)) {
-                            Debug.logError(ServiceUtil.getErrorMessage(result), module);
-                            return ServiceUtil.returnError(ServiceUtil.getErrorMessage(result));
-                        }
-                        serviceCtx.clear();
                     }
                 }
             }

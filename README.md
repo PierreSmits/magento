@@ -1,16 +1,23 @@
 Prerequisites: You should have following setup on your machine
 
-- Apache OFBiz instance running with 13.07 or later release (for more details refer: http://ofbiz.apache.org/index.html)
-- A Magento instance with Community or Enterprise edition (for more details please refer to http://www.magentocommerce.com/knowledge-base/entry/ce18-and-ee113-install-upgrade)
+Apache OFBiz instance running with 13.07 or later release (for more details refer: http://ofbiz.apache.org/index.html)
+ A Magento instance with Community or Enterprise edition (for more details please refer to http://www.magentocommerce.com/knowledge-base/entry/ce18-and-ee113-install-upgrade)
 
 There are four easy steps to use 'Magento' component with your Apache OFBiz.
 
-1. Upload plugin to Magento instance (plugin file available at github link: www.github.com/hotwaxlabs/OFBizKonnect.git)
-  -Sign into your Magento store admin panel.
-  -Navigate to System > Magento Connect > Magento Connect Manager.
-  -Upload plugin file(OFBiz_Konnect-1.0.0.tgz) from 'Direct package file upload' section of page.
-  -Return back to admin panel
-  -Flush Magento cache by clicking on 'Flush Magento Cache' button on system -> cache management page
+1.Use OFBizConnect source code available at https://github.com/hotwaxlabs/OFBizConnect.git
+    a. Copy OFBizConnect/app/code/community/OFBiz folder into your Magento installation directory app/code/community/
+    b. Copy OFBizConnect/app/etc/modules/OFBiz_Magentoext.xml into your Magento installation directory app/etc/modules/
+    c. Sign into your Magento store admin panel and flush Magento cache by clicking on 'Flush Magento Cache' button on system -> cache management page
+                         OR
+1. Upload plugin to Magento instance
+    a. Download plugin file(OFBiz_Connect-1.0.0.tgz) attached on OFBIZ jira ticket OFBIZ-6236 and soon it will be available in Magento Market place
+    b. Follow below steps to upload plugin on Magento instance
+       --Sign into your Magento store admin panel.
+       – Navigate to System > Magento Connect > Magento Connect Manager.
+       – Upload plugin file(OFBiz_Connect-1.0.0.tgz) from 'Direct package file upload' section of page.
+       – Return back to admin panel
+       – Flush Magento cache by clicking on 'Flush Magento Cache' button on system -> cache management page
 
 2. Create SOAP users and roles in Magento
    This user will be used by OFBiz integration services to establish connection with Magento. Please follow
@@ -38,4 +45,4 @@ There are four easy steps to use 'Magento' component with your Apache OFBiz.
    -After submitting configuration page, you see next screen as below. Click on Import button to get fetch settings and information from Magento instance so that you will no need to do it again in OFBiz.
    -Finally you will see screen with all fetched information. You Just need to follow it as per requirement.
    
-By following the above mentioned steps in the sequence you can easily setup the Magento-OFBiz Integration. OFBiz has been successful as external e-commerce stores like Magento. To know more about this integration, please feel free to get in touch with us at www.hotwaxsystems.com/contact-us
+By following the above mentioned steps in the sequence you can easily setup the Magento-OFBiz Integration. OFBiz has been successful as external e-commerce stores like Magento.

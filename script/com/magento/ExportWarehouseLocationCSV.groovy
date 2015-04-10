@@ -1,6 +1,24 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-
+import org.ofbiz.base.util.UtilProperties;
 import org.ofbiz.entity.condition.EntityCondition
 import org.ofbiz.entity.condition.EntityConditionBuilder
 import org.ofbiz.entity.condition.EntityOperator
@@ -8,8 +26,6 @@ import org.ofbiz.entity.condition.EntityOperator
 HttpServletResponse response = context.response
 HttpServletRequest request = context.request
 
-response.setContentType("text/csv")
-response.setHeader("Content-Disposition", "attachment;filename=WarehouseLocation.csv")
 exprBldr = new EntityConditionBuilder()
 Map parameters = context.parameters
 facilityId = parameters['facilityId']
@@ -28,9 +44,7 @@ magentoProducts.each { magentoProduct ->
         levelId = null
         positionId = null
         inventoryCount = 0
-        productFacilityLocationMap = [:];
-        productFacilityLocationMap.put("productId", productId)
-    
+
         productFacility = delegator.findOne("ProductFacility", [productId : productId, facilityId : facilityId], false)
         if (productFacility) {
             if (productFacility.lastInventoryCount) {
@@ -44,32 +58,29 @@ magentoProducts.each { magentoProduct ->
                 EQUALS(facilityId : facilityId)
             }
             productFacilityLocations = delegator.findList("ProductFacilityLocationView", condition, null, null, null, false)
-            if(productFacilityLocations) {
-                productFacilityLocation = productFacilityLocations.get(0)
-                locationSeqId = productFacilityLocation.locationSeqId
-                areaId = productFacilityLocation.areaId
-                aisleId = productFacilityLocation.
-                sectionId = productFacilityLocation.sectionId
-                levelId = productFacilityLocation.levelId
-                positionId = productFacilityLocation.positionId
+            if(!productFacilityLocations) {
+                productFacilityLocationMap = [:];
+                productFacilityLocationMap.put("productId", productId)
+                productFacilityLocationMap.put("inventoryCount", inventoryCount)
+                productList.add(productFacilityLocationMap)
             }
         }
-        productFacilityLocationMap.put("locationSeqId", locationSeqId)
-        productFacilityLocationMap.put("areaId", areaId)
-        productFacilityLocationMap.put("aisleId", aisleId)
-        productFacilityLocationMap.put("sectionId", sectionId)
-        productFacilityLocationMap.put("levelId", levelId)
-        productFacilityLocationMap.put("positionId", positionId)
-        productFacilityLocationMap.put("inventoryCount", inventoryCount)
-        productList.add(productFacilityLocationMap)
     }
 }
 
-PrintWriter writer = response.getWriter()
-StringBuilder csvHeader = getCSVHedaer()
-
-writeCSVData(csvHeader,productList)
-writer.print(csvHeader.toString())
+if(productList) {
+    response.setContentType("text/csv")
+    response.setHeader("Content-Disposition", "attachment;filename=WarehouseLocation.csv")
+    PrintWriter writer = response.getWriter()
+    StringBuilder csvHeader = getCSVHedaer()
+    writeCSVData(csvHeader,productList)
+    writer.print(csvHeader.toString())
+} else {
+    response.setContentType("text/csv")
+    response.setHeader("Content-Disposition", "attachment;filename=WarehouseLocation.txt")
+    PrintWriter writer = response.getWriter()
+    writer.print(UtilProperties.getMessage("MagentoUiLabels", "MagentoExportWarehouseLocationErrorInfo", locale))
+}
 
 def StringBuilder getCSVHedaer(){
     StringBuilder sb = new StringBuilder()
@@ -102,36 +113,36 @@ def void writeCSVData(StringBuilder exportProductFacilityData, List records){
             exportProductFacilityData.append('');exportProductFacilityData.append(',')
         }
         if(record['areaId']){
-            String locationSeqId = record['areaId'].replace(',','')
-            exportProductFacilityData.append(locationSeqId?:'')
+            String areaId = record['areaId'].replace(',','')
+            exportProductFacilityData.append(areaId?:'')
             exportProductFacilityData.append(',')
         }else{
             exportProductFacilityData.append('');exportProductFacilityData.append(',')
         }
         if(record['aisleId']){
-            String locationSeqId = record['aisleId'].replace(',','')
-            exportProductFacilityData.append(locationSeqId?:'')
+            String aisleId = record['aisleId'].replace(',','')
+            exportProductFacilityData.append(aisleId?:'')
             exportProductFacilityData.append(',')
         }else{
             exportProductFacilityData.append('');exportProductFacilityData.append(',')
         }
         if(record['sectionId']){
-            String locationSeqId = record['sectionId'].replace(',','')
-            exportProductFacilityData.append(locationSeqId?:'')
+            String sectionId = record['sectionId'].replace(',','')
+            exportProductFacilityData.append(sectionId?:'')
             exportProductFacilityData.append(',')
         }else{
             exportProductFacilityData.append('');exportProductFacilityData.append(',')
         }
         if(record['levelId']){
-            String locationSeqId = record['levelId'].replace(',','')
-            exportProductFacilityData.append(locationSeqId?:'')
+            String levelId = record['levelId'].replace(',','')
+            exportProductFacilityData.append(levelId?:'')
             exportProductFacilityData.append(',')
         }else{
             exportProductFacilityData.append('');exportProductFacilityData.append(',')
         }
         if(record['positionId']){
-            String locationSeqId = record['positionId'].replace(',','')
-            exportProductFacilityData.append(locationSeqId?:'')
+            String positionId = record['positionId'].replace(',','')
+            exportProductFacilityData.append(positionId?:'')
             exportProductFacilityData.append(',')
         }else{
             exportProductFacilityData.append('');exportProductFacilityData.append(',')

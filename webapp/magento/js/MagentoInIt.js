@@ -86,6 +86,23 @@ jQuery(function() {
             }).appendTo('body');
         }
     }
+
+    function showDataSyncImage(elt) {
+        if(elt.attr('target') !== '_blank') {
+            jQuery('<div/>').addClass('ui-widget-overlay').css({
+                height: jQuery(document).height() + 'px',
+                width: jQuery(document).width() + 'px',
+                'z-index': '1002'
+            }).appendTo('body'); 
+            jQuery('<i/>').addClass('data-sync-image').css({
+                position: 'fixed',
+                top: '25%', // approximate position
+                left: '25%', // approximate position
+                'z-index': '1002'
+            }).appendTo('body');
+        }
+    }
+
     jQuery.validator.addClassRules({
         'required': {
             req: true
@@ -317,20 +334,27 @@ jQuery(function() {
     });
     jQuery('body').on('click', 'a', function(event) {
         var link_href = jQuery(this).attr('href');
-        if(!(event.isDefaultPrevented()) && !(link_href === undefined || link_href === "" || link_href === 'javascript:void();' )) {
+        var is_data_sync = jQuery(this).attr('data-dataSyncImage');
+        if(!(event.isDefaultPrevented()) && !(link_href === undefined || link_href === "" || link_href === 'javascript:void();' ) && (is_data_sync === undefined)) {
             if(link_href.indexOf('#') !== 0) {
                 if (!(event.metaKey || event.ctrlKey || event.shiftKey)) {
-                showSpinner(jQuery(this));
+                    showSpinner(jQuery(this));
                 }
             }
         }
     });
     jQuery('body').on('submit', 'form', function(event) {
-        if(!event.isDefaultPrevented()) {
+        var is_data_sync = jQuery(this).attr('data-dataSyncImage');
+        if(!event.isDefaultPrevented() && (is_data_sync === undefined)) {
             jQuery(':focus').blur();
             showSpinner(jQuery(this));
         }
     });
+
+    jQuery('body').on('click', '[data-dataSyncImage]', function(event) {
+        showDataSyncImage(jQuery(this));
+    });
+
     rebindContainer();
 });
 function ajaxifyForm(ext_options) {

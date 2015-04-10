@@ -46,6 +46,7 @@ under the License.
     <service-resource type="model" loader="main" location="servicedef/services_catalog.xml"/>
     <service-resource type="model" loader="main" location="servicedef/services_inventory.xml"/>
     <service-resource type="model" loader="main" location="servicedef/services_fileupload.xml"/>
+    <service-resource type="model" loader="main" location="servicedef/services_return.xml"/>
 
     <webapp name="magento"
         title="Magento"

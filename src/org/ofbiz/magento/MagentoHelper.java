@@ -1,3 +1,21 @@
+/*******************************************************************************
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *******************************************************************************/
 package org.ofbiz.magento;
 
 import java.io.BufferedReader;
@@ -285,6 +303,20 @@ public class MagentoHelper {
         Map createResp = coh.createOrder(system);
         if (!ServiceUtil.isSuccess(createResp)) {
             return (String) ServiceUtil.getErrorMessage(createResp);
+        }
+        // approve the order
+        String orderId = (String) createResp.get("orderId");
+        Map<String, Object> serviceCtx = new HashMap<String, Object>();
+        Map<String, Object> serviceResult = new HashMap<String, Object>();
+        serviceCtx.put("orderId", orderId);
+        serviceCtx.put("statusId", "ORDER_APPROVED");
+        serviceCtx.put("setItemStatus", "Y");
+        serviceCtx.put("userLogin", system);
+        serviceResult = dispatcher.runSync("changeOrderStatus", serviceCtx);
+
+        if(ServiceUtil.isError(serviceResult)) {
+            Debug.log("=====Problem in approving the order. Following order is not approved========="+ orderId);
+            return "error";
         }
         return "success";
     }
@@ -760,7 +792,7 @@ public class MagentoHelper {
         }
         return "Success";
     }
-    public static Filters prepareSalesOrderFilters(String magOrderId, String statusId, Timestamp fromDate, Timestamp thruDate) {
+    public static Filters prepareSalesOrderFilters(String magOrderId, String statusId, Timestamp fromDate, Timestamp thruDate, String productStoreId) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String createdFrom = null;
         String createdTo = null;
@@ -804,6 +836,14 @@ public class MagentoHelper {
             orderIncrementIdCond.setValue(magOrderId);
             complexFilter.setKey("increment_id");
             complexFilter.setValue(orderIncrementIdCond);
+        }
+
+        if (UtilValidate.isNotEmpty(productStoreId)) {
+            AssociativeEntity productStoreIdCond = new AssociativeEntity();
+            productStoreIdCond.setKey("eq");
+            productStoreIdCond.setValue(productStoreId);
+            complexFilter.setKey("store_id");
+            complexFilter.setValue(productStoreIdCond);
         }
         complexFilterArray.getComplexObjectArray().add(complexFilter);
         filters.setComplexFilter(complexFilterArray);
@@ -886,7 +926,7 @@ public class MagentoHelper {
             Debug.logError("I/O error while reading from file: " + e.getMessage(), module);
         }
     }
-    public static List<Map<String, Object>> getVariance(LocalDispatcher dispatcher, Delegator delegator) {
+    public static List<Map<String, Object>> getVariance(LocalDispatcher dispatcher, Delegator delegator, String productStoreId) {
         int mageTotalOrders = 0;
         int mageTotalCompletedOrders = 0;
         int mageTotalCancelledOrders = 0;
@@ -932,7 +972,7 @@ public class MagentoHelper {
                 ihoJobFinishDateTime = ihoJob.getTimestamp("finishDateTime");
                 }
                 MagentoClient magentoClient = new MagentoClient(dispatcher, delegator);
-                Filters filters = MagentoHelper.prepareSalesOrderFilters(null, null, fromDate, null);
+                Filters filters = MagentoHelper.prepareSalesOrderFilters(null, null, fromDate, null, productStoreId);
                 List<SalesOrderListEntity> salesOrders = magentoClient.getSalesOrderList(filters);
                 if (UtilValidate.isNotEmpty(salesOrders)) {
                     for (SalesOrderListEntity salesOrder : salesOrders) {

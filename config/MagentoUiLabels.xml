@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
 <resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <property key="CompanyName">
         <value xml:lang="en">OFBiz: Magento</value>
@@ -63,6 +81,12 @@
     <property key="MagentoCreateNewProductStore">
         <value xml:lang="en">Create New Product Store</value>
     </property>
+    <property key="MagentoEditStoreDetails">
+        <value xml:lang="en">Edit Store Details</value>
+    </property>
+    <property key="MagentoEditWarehouseDetails">
+        <value xml:lang="en">Edit Warehouse Details</value>
+    </property>
     <property key="MagentoEmailAddress">
         <value xml:lang="en">Email Address</value>
     </property>
@@ -99,32 +123,17 @@
     <property key="MagentoExportProductCountWithWarehouseLocationInfo">
         <value xml:lang="en">Export a CSV for Product count with Product Id and associated Warehouse location. You can update this CSV and upload again to the OFBiz system in the next step "Update And Import The CSV With Warehouse Location".</value>
     </property>
+    <property key="MagentoExportWarehouseLocationErrorInfo">
+        <value xml:lang="en">No product found with empty warehouse location.</value>
+    </property>
     <property key="MagentoFacilityInformationIsAddedSuccessfully">
         <value xml:lang="en">Facility information is added successfully.</value>
-    </property>
-    <property key="MagentoOrdersHasBeenImportedSuccessfully">
-        <value xml:lang="en">Orders has been imported successfully.</value>
-    </property>
-    <property key="MagentoOrdersHasBeenSynchronizedSuccessfully">
-        <value xml:lang="en">Orders has been synchronized successfully.</value>
-    </property>
-    <property key="MagentoSyncCancelledOrders">
-        <value xml:lang="en">Sync Cancelled Orders</value>
-    </property>
-    <property key="MagentoSyncCancelledOrdersInfo">
-        <value xml:lang="en">Synchronize orders cancelled at Magento store with OFBiz system.</value>
     </property>
     <property key="MagentoImportCategories">
         <value xml:lang="en">Import Categories</value>
     </property>
     <property key="MagentoImportCategoryInfo">
         <value xml:lang="en">Import the Product Categories from Magento store to OFBiz system.</value>
-    </property>
-    <property key="MagentoSyncHeldOrders">
-        <value xml:lang="en">Sync Held Orders</value>
-    </property>
-    <property key="MagentoSyncHeldOrdersInfo">
-        <value xml:lang="en">Synchronize orders held at Magento store with OFBiz system.</value>
     </property>
     <property key="MagentoImportInventoryCountFromMagentoStore">
         <value xml:lang="en">Import Inventory Count From Magento Store</value>
@@ -162,9 +171,6 @@
     <property key="MagentoInvalidInventoryCount">
         <value xml:lang="en">Inventory Count Value is not valid.</value>
     </property>
-    <property key="MagentoInventoryCountIsMissing">
-        <value xml:lang="en">Inventory Count is missing.</value>
-    </property>
     <property key="MagentoInventoryHasBeenImportedSuccessfully">
         <value xml:lang="en">Inventory has been imported successfully.</value>
     </property>
@@ -188,7 +194,7 @@
     </property>
     <property key="MagentoMagentoConnectUrl">
         <value xml:lang="en">Magento Connect Url</value>
-    </property>MagentoMagentoIntegrationManager
+    </property>
     <property key="MagentoMagentoIntegrationManager">
         <value xml:lang="en">Magento Integration Manager</value>
     </property>
@@ -207,17 +213,23 @@
     <property key="MagentoNoErrorOrResultLogFilesExist">
         <value xml:lang="en">No error or result log files exist</value>
     </property>
-    <property key="MagentoPhone">
-        <value xml:lang="en">Phone</value>
-    </property>
     <property key="MagentoNoDataExistsToProcess">
         <value xml:lang="en">No data exists to process, please load the file first then import.</value>
     </property>
     <property key="MagentoNoDataIsAvailable">
         <value xml:lang="en">No data is available.</value>
     </property>
+    <property key="MagentoOrdersHasBeenImportedSuccessfully">
+        <value xml:lang="en">[${successRecords}] orders out of total [${processedRecords}] have been imported successfully.</value>
+    </property>
+    <property key="MagentoOrdersHasBeenSynchronizedSuccessfully">
+        <value xml:lang="en">Orders has been synchronized successfully.</value>
+    </property>
     <property key="MagentoOrderManagementSystem">
         <value xml:lang="en">Order Management System</value>
+    </property>
+    <property key="MagentoPhone">
+        <value xml:lang="en">Phone</value>
     </property>
     <property key="MagentoPleaseEnterFacilityLocation">
         <value xml:lang="en">Please enter facility location.</value>
@@ -235,9 +247,9 @@
         <value xml:lang="en">Preview product facility locations that will get imported, if you need to make changes reload the product facility location upload file.</value>
     </property>
     <property key="MagentoProductsHaveBeenImportedSuccessfully">
-        <value xml:lang="en">Products Have Been Imported Successfully</value>
+        <value xml:lang="en">[${successRecords}] products out of total [${processedRecords}] have been imported successfully.</value>
     </property>
-    <property key="ProductFacilityLocationImportResultSummary">
+    <property key="MagentoProductFacilityLocationImportResultSummary">
         <value xml:lang="en">Product Facility Location Import Result Summary</value>
     </property>
     <property key="MagentoProductStore">
@@ -245,6 +257,12 @@
     </property>
     <property key="MagentoQtyRecRejCanNotBeZero">
         <value xml:lang="en">Both quantity to accept and quantity to reject cannot be zero.</value>
+    </property>
+    <property key="MagentoQuantityIsMissing">
+        <value xml:lang="en">Quantity is missing.</value>
+    </property>
+    <property key="MagentoQuantityCannotBeNegative">
+        <value xml:lang="en">Quantity cannot be negative.</value>
     </property>
     <property key="MagentoRefreshPage">
         <value xml:lang="en">Refresh Page</value>
@@ -272,12 +290,6 @@
     </property>
     <property key="MagentoStore">
         <value xml:lang="en">Store</value>
-    </property>
-    <property key="MagentoEditStoreDetails">
-        <value xml:lang="en">Edit Store Details</value>
-    </property>
-    <property key="MagentoEditWarehouseDetails">
-        <value xml:lang="en">Edit Warehouse Details</value>
     </property>
     <property key="MagentoStoreInformationIsUpdatedSuccessfully">
         <value xml:lang="en">Store information is updated successfully.</value>
@@ -315,8 +327,20 @@
     <property key="MagentoUpdateAndImportCSVWithWarehouseLocationInfo">
         <value xml:lang="en">Update the CSV exported from previous step "Export Product Count With Warehouse Location" with Product count, Warehouse location and Upload it to the OFBiz system. You can receive inventory in the selected warehouse, a new warehouse location for a product will be created in real-time if it is not in existence. Sync and reverse-sync will be done from OFBiz to Magento store and vice versa for the promised inventory count.  </value>
     </property>
+    <property key="MagentoUpdateCancelledOrdersStatusFromMagento">
+        <value xml:lang="en">Update Cancelled Orders Status From Magento</value>
+    </property>
+    <property key="MagentoUpdateCancelledOrdersStatusInfo">
+        <value xml:lang="en">Update cancelled orders status from Magento store to OFBiz system.</value>
+    </property>
     <property key="MagentoUpdateConfiguration">
         <value xml:lang="en">Update Configuration</value>
+    </property>
+    <property key="MagentoUpdateHeldOrdersStatusFromMagento">
+        <value xml:lang="en">Update Held Orders Status From Magento</value>
+    </property>
+    <property key="MagentoUpdateHeldOrdersStatusInfo">
+        <value xml:lang="en">Update held orders status from Magento store to OFBiz system.</value>
     </property>
     <property key="MagentoWarehouse">
         <value xml:lang="en">Warehouse</value>

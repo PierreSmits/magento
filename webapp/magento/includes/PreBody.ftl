@@ -1,3 +1,21 @@
+<#--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
 <html>
   <#if session.getAttribute("userLogin")?has_content>
     <#if page.permission?has_content && page.action?has_content && !security.hasEntityPermission(page.permission, page.action, session)>
@@ -74,7 +92,7 @@
               </li>
               <#if magentoConfiguration?has_content && magentoStoreList?has_content>
                 <li>
-                  <a href="<@ofbizUrl>testMagentoConnectionFromContainer</@ofbizUrl>" class="pull-right" title="${uiLabelMap.MagentoTestConnection}"><i class="fa fa-bolt fa-lg"></i></a>
+                  <a href="<@ofbizUrl>testMagentoConnectionFromContainer</@ofbizUrl>" class="pull-right" title="${uiLabelMap.MagentoTestConnection}" data-dataSyncImage="Y"><i class="fa fa-bolt fa-lg"></i></a>
                 </li>
                 <li>
                   <a href="<@ofbizUrl>UpdateMagentoConfiguration</@ofbizUrl>" data-dialog-href="<@ofbizUrl>UpdateMagentoConfiguration</@ofbizUrl>" data-dialog-width="half" title="${uiLabelMap.MagentoUpdateConfiguration}" class="pull-right"><i class="fa fa-cog fa-lg"></i></a>

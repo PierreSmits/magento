@@ -1,3 +1,21 @@
+/*******************************************************************************
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *******************************************************************************/
 package org.ofbiz.magento;
 
 import java.io.ByteArrayOutputStream;
@@ -49,14 +67,15 @@ public class MagentoServices {
         String magOrderId = (String) context.get("externalId");
         Timestamp fromDate = (Timestamp) context.get("fromDate");
         Timestamp thruDate = (Timestamp) context.get("thruDate");
+        int errorRecords = 0;
+        int processedRecords = 0;
 
         try {
-            Filters filters = MagentoHelper.prepareSalesOrderFilters(magOrderId, "pending", fromDate, thruDate);
+            Filters filters = MagentoHelper.prepareSalesOrderFilters(magOrderId, "pending", fromDate, thruDate, null);
 
             MagentoClient magentoClient = new MagentoClient(dispatcher, delegator);
 
             List<SalesOrderListEntity> salesOrderList = magentoClient.getSalesOrderList(filters);
-            List<String> errorMessageList = new ArrayList<String>();
             GenericValue system = delegator.findOne("UserLogin", false, UtilMisc.toMap("userLoginId", "system"));
             for (SalesOrderListEntity salesOrder : salesOrderList) {
                 SalesOrderEntity salesOrderInfo = magentoClient.getSalesOrderInfo(salesOrder.getIncrementId());
@@ -71,9 +90,11 @@ public class MagentoServices {
                         createOrderCtx.put("orderInfo", salesOrderInfo);
                         createOrderCtx.put("userLogin", system);
                         serviceResp = dispatcher.runSync("createOrderFromMagento", createOrderCtx, 120, true);
-                        if (!ServiceUtil.isSuccess(serviceResp)) {
-                            errorMessageList.add((String) ServiceUtil.getErrorMessage(serviceResp));
+                        if (ServiceUtil.isError(serviceResp)) {
+                            Debug.logInfo(ServiceUtil.getErrorMessage(serviceResp), module);
+                            errorRecords++;
                         }
+                        processedRecords++;
                     }
                 }
             }
@@ -88,7 +109,7 @@ public class MagentoServices {
             e.printStackTrace();
             return ServiceUtil.returnError("Error in improting pending orders from Magento. Error Message:" +e.getMessage());
         }
-        return ServiceUtil.returnSuccess(UtilProperties.getMessage(resource, "MagentoOrdersHasBeenImportedSuccessfully", locale));
+        return ServiceUtil.returnSuccess(UtilProperties.getMessage(resource, "MagentoOrdersHasBeenImportedSuccessfully", UtilMisc.toMap("processedRecords", processedRecords, "successRecords", (processedRecords - errorRecords)), locale));
     }
     public static Map<String, Object> createOrderFromMagento(DispatchContext dctx, Map<String, ?> context) {
         Map<String, Object> response = ServiceUtil.returnSuccess();
@@ -120,7 +141,7 @@ public class MagentoServices {
         Timestamp thruDate = (Timestamp) context.get("thruDate");
 
         try {
-            Filters filters = MagentoHelper.prepareSalesOrderFilters(magOrderId, "canceled", fromDate, thruDate);
+            Filters filters = MagentoHelper.prepareSalesOrderFilters(magOrderId, "canceled", fromDate, thruDate, null);
             MagentoClient magentoClient = new MagentoClient(dispatcher, delegator);
             List<SalesOrderListEntity> salesOrderList = magentoClient.getSalesOrderList(filters);
             GenericValue system = delegator.findOne("UserLogin", false, UtilMisc.toMap("userLoginId", "system"));
@@ -195,7 +216,7 @@ public class MagentoServices {
         Timestamp fromDate = (Timestamp) context.get("fromDate");
 
         try {
-            Filters filters = MagentoHelper.prepareSalesOrderFilters(magOrderId, "holded", fromDate, null);
+            Filters filters = MagentoHelper.prepareSalesOrderFilters(magOrderId, "holded", fromDate, null, null);
             MagentoClient magentoClient = new MagentoClient(dispatcher, delegator);
             List<SalesOrderListEntity> salesOrderList = magentoClient.getSalesOrderList(filters);
             GenericValue system = delegator.findOne("UserLogin", false, UtilMisc.toMap("userLoginId", "system"));
@@ -496,12 +517,12 @@ public class MagentoServices {
         LocalDispatcher dispatcher = dctx.getDispatcher();
         GenericValue userLogin = (GenericValue) context.get("userLogin");
         try {
-            List<Map<String, Object>> varianceList = MagentoHelper.getVariance(dispatcher, delegator);
-            if (UtilValidate.isNotEmpty(varianceList)) {
-                MagentoHelper.createMagentoIntegrationConciliationCSV(varianceList);
-                GenericValue magentoConfiguration = EntityUtil.getFirst(delegator.findList("MagentoConfiguration", EntityCondition.makeCondition("enumId", EntityOperator.EQUALS, "MAGENTO_SALE_CHANNEL"), null, null, null, false));
-                if (UtilValidate.isNotEmpty(magentoConfiguration) && UtilValidate.isNotEmpty(magentoConfiguration.getString("productStoreId"))) {
-                    GenericValue productStore = delegator.findOne("ProductStore", false, UtilMisc.toMap("productStoreId", magentoConfiguration.getString("productStoreId")));
+            List<GenericValue> magentoProductStoreList = delegator.findList("MagentoProductStore", null, null, null, null, false);
+            for (GenericValue magentoProductStore : magentoProductStoreList) {
+                List<Map<String, Object>> varianceList = MagentoHelper.getVariance(dispatcher, delegator, magentoProductStore.getString("magentoDefaultStoreId"));
+                if (UtilValidate.isNotEmpty(varianceList)) {
+                    MagentoHelper.createMagentoIntegrationConciliationCSV(varianceList);
+                    GenericValue productStore = delegator.findOne("ProductStore", false, UtilMisc.toMap("productStoreId", magentoProductStore.getString("productStoreId")));
                     if (UtilValidate.isNotEmpty(productStore) && UtilValidate.isNotEmpty(productStore.getString("payToPartyId"))) {
                         result = dispatcher.runSync("getPartyEmail", UtilMisc.toMap("partyId", productStore.get("payToPartyId"), "userLogin", userLogin));
                         if (!ServiceUtil.isSuccess(result)) {
@@ -509,22 +530,22 @@ public class MagentoServices {
                             return ServiceUtil.returnError((ServiceUtil.getErrorMessage(result)));
                         }
                     }
-                }
 
-                Map<String, Object> serviceCtx = new HashMap<String, Object>();
-                serviceCtx.put("userLogin", userLogin);
-                serviceCtx.put("sendTo", (String) result.get("emailAddress"));
-                serviceCtx.put("sendFrom", (String) result.get("emailAddress"));
-                serviceCtx.put("subject", "Problem in Magento integration");
+                    Map<String, Object> serviceCtx = new HashMap<String, Object>();
+                    serviceCtx.put("userLogin", userLogin);
+                    serviceCtx.put("sendTo", (String) result.get("emailAddress"));
+                    serviceCtx.put("sendFrom", (String) result.get("emailAddress"));
+                    serviceCtx.put("subject", "Problem in Magento integration");
 
-                result = dispatcher.runSync("sendMagentoIntegrationConciliationMail", serviceCtx);
-                if (!ServiceUtil.isSuccess(result)) {
-                    Debug.logError(ServiceUtil.getErrorMessage(result), module);
-                    return ServiceUtil.returnError((ServiceUtil.getErrorMessage(result)));
+                    result = dispatcher.runSync("sendMagentoIntegrationConciliationMail", serviceCtx);
+                    if (!ServiceUtil.isSuccess(result)) {
+                        Debug.logError(ServiceUtil.getErrorMessage(result), module);
+                        return ServiceUtil.returnError((ServiceUtil.getErrorMessage(result)));
+                    }
+                    result.clear();
+                } else {
+                    Debug.logInfo("Sales order synchronization process is consistent.", module);
                 }
-                result.clear();
-            } else {
-                Debug.logInfo("Sales order synchronization process is consistent.", module);
             }
         } catch (GenericServiceException gse) {
             Debug.logInfo(gse.getMessage(), module);
