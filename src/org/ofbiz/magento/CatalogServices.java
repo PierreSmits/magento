@@ -538,15 +538,21 @@ public class CatalogServices {
         String groupedParentId = (String) context.get("groupedParentId");
 
         /*"NA" as an string is coming from magento if image url is not present there*/
-        if(UtilValidate.isEmpty(originalImageUrl) && !("NA".equalsIgnoreCase(originalImageUrl))) {
+        if(UtilValidate.isEmpty(originalImageUrl) || ("NA".equalsIgnoreCase(originalImageUrl))) {
             originalImageUrl = smallImageUrl;
         }
-        if(UtilValidate.isEmpty(originalImageUrl) && !("NA".equalsIgnoreCase(originalImageUrl))) {
+        if(UtilValidate.isEmpty(originalImageUrl) || ("NA".equalsIgnoreCase(originalImageUrl))) {
             originalImageUrl = thumbnailImageUrl;
+        }
+        if(UtilValidate.isEmpty(thumbnailImageUrl) || ("NA".equalsIgnoreCase(thumbnailImageUrl))) {
+            thumbnailImageUrl = originalImageUrl;
+        }
+        if(UtilValidate.isEmpty(smallImageUrl) || ("NA".equalsIgnoreCase(smallImageUrl))) {
+            smallImageUrl = thumbnailImageUrl;
         }
         try {
             //Create Product
-            GenericValue product = delegator.findOne("Product", UtilMisc.toMap("productId", productId), true);
+            GenericValue product = delegator.findOne("Product", UtilMisc.toMap("productId", productId), false);
             serviceInMap.put("productId", productId);
             serviceInMap.put("productTypeId", "FINISHED_GOOD");
             serviceInMap.put("isVirtual", "N");
@@ -588,7 +594,7 @@ public class CatalogServices {
             //Step 1 : First Create Parent Products If they are not exists
             //Step 1.1 : Create Parent Product of Bundle Type
             if(!("NA".equalsIgnoreCase(bundleParentId))) {
-                GenericValue bundleProduct = delegator.findOne("Product", UtilMisc.toMap("productId", bundleParentId), true);
+                GenericValue bundleProduct = delegator.findOne("Product", UtilMisc.toMap("productId", bundleParentId), false);
                 if(UtilValidate.isEmpty(bundleProduct)) {
                     serviceInMap.put("productId", bundleParentId);
                     serviceInMap.put("internalName", bundleParentId);
@@ -603,7 +609,7 @@ public class CatalogServices {
             }
             //Step 1.2 : Create Parent Product of Configurable Type
             if(!("NA".equalsIgnoreCase(configurableParentId))) {
-                GenericValue configurableProduct = delegator.findOne("Product", UtilMisc.toMap("productId", configurableParentId), true);
+                GenericValue configurableProduct = delegator.findOne("Product", UtilMisc.toMap("productId", configurableParentId), false);
                 if(UtilValidate.isEmpty(configurableProduct)) {
                     serviceInMap.put("productId", configurableParentId);
                     serviceInMap.put("internalName", configurableParentId);
@@ -618,7 +624,7 @@ public class CatalogServices {
             }
             //Step 1.3 : Create Parent Product of Grouped Type
             if(!("NA".equalsIgnoreCase(groupedParentId))) {
-                GenericValue groupedProduct = delegator.findOne("Product", UtilMisc.toMap("productId", groupedParentId), true);
+                GenericValue groupedProduct = delegator.findOne("Product", UtilMisc.toMap("productId", groupedParentId), false);
                 if(UtilValidate.isEmpty(groupedProduct)) {
                     serviceInMap.put("productId", groupedParentId);
                     serviceInMap.put("internalName", groupedParentId);
@@ -783,7 +789,7 @@ public class CatalogServices {
             }
 
             //Good Identification
-            GenericValue goodIdentification = delegator.findOne("GoodIdentification", UtilMisc.toMap("productId", productId, "goodIdentificationTypeId", "MAGENTO_ID"), true);
+            GenericValue goodIdentification = delegator.findOne("GoodIdentification", UtilMisc.toMap("productId", productId, "goodIdentificationTypeId", "MAGENTO_ID"), false);
             if(UtilValidate.isEmpty(goodIdentification)) {
                 serviceInMap.put("productId", productId);
                 serviceInMap.put("goodIdentificationTypeId", "MAGENTO_ID");

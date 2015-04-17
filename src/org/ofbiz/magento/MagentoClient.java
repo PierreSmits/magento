@@ -536,8 +536,15 @@ public class MagentoClient {
             }
         }
 
+        @SuppressWarnings("unchecked")
+        Map<Integer, Double> returnAdjustmentMap = (Map<Integer, Double>) creditMemoDetailMap.get("returnAdjustmentMap");
+        Double positiveAdjustments = returnAdjustmentMap.get("positiveAdjustments");
+        Double shippingAdjustments = returnAdjustmentMap.get("shippingAdjustments");
+
         SalesOrderCreditmemoData salesOrderCreditmemoData = new SalesOrderCreditmemoData();
         salesOrderCreditmemoData.setQtys(orderItemIdQtyArray);
+        salesOrderCreditmemoData.setAdjustmentPositive(positiveAdjustments);
+        salesOrderCreditmemoData.setShippingAmount(shippingAdjustments);
 
         SalesOrderCreditmemoCreateRequestParam salesOrderCreditmemoCreateRequestParam = new SalesOrderCreditmemoCreateRequestParam();
         salesOrderCreditmemoCreateRequestParam.setSessionId(sessionId);

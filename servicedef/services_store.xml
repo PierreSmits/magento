@@ -120,7 +120,7 @@ under the License.
     <service name="createUpdateShipmentGatewayConfig" engine="java" auth="true"
             location="org.ofbiz.magento.StoreServices" invoke="createUpdateShipmentGatewayConfig">
         <description>Create Update Shipment Gateway Configuration</description>
-        <attribute name="shipmentGatewayConfigId" mode="IN" type="String" optional="true"/>
+        <attribute name="shipmentGatewayConfigId" mode="INOUT" type="String" optional="true"/>
         <attribute name="connectUrl" mode="IN" type="String"/>
         <attribute name="accessUserId" mode="IN" type="String"/>
         <attribute name="accessPassword" mode="IN" type="String"/>

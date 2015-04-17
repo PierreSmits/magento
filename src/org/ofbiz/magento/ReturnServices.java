@@ -18,6 +18,7 @@
  *******************************************************************************/
 package org.ofbiz.magento;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +58,7 @@ public class ReturnServices {
                      orderIdList.add(orderId);
                  }
              }
+             int totalOrdersInReturn = orderIdList.size();
              for(String orderId : orderIdList) {
                  GenericValue orderHeader = delegator.findOne("OrderHeader", UtilMisc.toMap("orderId", orderId), false);
                  Map<String, Object> creditMemoDetailMap = new HashMap<String, Object>();
@@ -72,6 +74,42 @@ public class ReturnServices {
                      orderItemQtyMap.put(magOrderItemSeqId, qty);
                  }
                  creditMemoDetailMap.put("orderItemQtyMap", orderItemQtyMap);
+
+                 Map<String, Double> returnAdjustmentMap = new HashMap<String, Double>();
+                 List<GenericValue> returnAdjustments = delegator.findList("ReturnAdjustment", EntityCondition.makeCondition("returnId", returnId), null,null, null, false);
+                 BigDecimal shippingAdjustments = BigDecimal.ZERO;
+                 BigDecimal salesTaxAdjustments = BigDecimal.ZERO;
+                 BigDecimal discountAdjustments = BigDecimal.ZERO;
+                 BigDecimal manualAdjustments = BigDecimal.ZERO;
+                 for(GenericValue returnAdjustment : returnAdjustments) {
+                     String returnAdjustmentTypeId = returnAdjustment.getString("returnAdjustmentTypeId");
+                     if("RET_MAN_ADJ".equals(returnAdjustmentTypeId)) {
+                         manualAdjustments = manualAdjustments.add(returnAdjustment.getBigDecimal("amount"));
+                     } else {
+                         String orderAdjustmentId = returnAdjustment.getString("orderAdjustmentId");
+                         GenericValue orderAdjustment = delegator.findOne("OrderAdjustment", UtilMisc.toMap("orderAdjustmentId", orderAdjustmentId), false);
+                         //We need to check if the orderAdjustment should be of the order which is being currently processed only.
+                         if(orderId.equals(orderAdjustment.getString("orderId"))) {
+                             if("RET_SHIPPING_ADJ".equals(returnAdjustmentTypeId)) {
+                                 shippingAdjustments = shippingAdjustments.add(returnAdjustment.getBigDecimal("amount"));
+                             }
+                             if("RET_SALES_TAX_ADJ".equals(returnAdjustmentTypeId)) {
+                                 salesTaxAdjustments = salesTaxAdjustments.add(returnAdjustment.getBigDecimal("amount"));
+                             }
+                             if("RET_DISCOUNT_ADJ".equals(returnAdjustmentTypeId)) {
+                                 discountAdjustments = discountAdjustments.add(returnAdjustment.getBigDecimal("amount"));
+                             }
+                         }
+                     }
+                 }
+                 //Total manual adjustment will gets divided equally among all the orders
+                 manualAdjustments = manualAdjustments.divide(new BigDecimal(totalOrdersInReturn));
+
+                 BigDecimal positiveAdjustments = (salesTaxAdjustments.add(discountAdjustments).add(manualAdjustments));
+                 returnAdjustmentMap.put("positiveAdjustments", positiveAdjustments.doubleValue());
+                 returnAdjustmentMap.put("shippingAdjustments", shippingAdjustments.doubleValue());
+                 creditMemoDetailMap.put("returnAdjustmentMap", returnAdjustmentMap);
+
                  String creditMemoIncrementId = magentoClient.createCreditMemo(creditMemoDetailMap);
                  if(UtilValidate.isEmpty(creditMemoIncrementId)) {
                      Debug.logError("Problem in creating credit-memo for Order ["+orderId+"]", module);
