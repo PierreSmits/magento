@@ -71,7 +71,7 @@ public class LogFileEvents {
                     contentName += ".txt";
                 }
             }
-            String xmlString = ContentWorker.renderContentAsText(dispatcher, delegator, contentId, null, locale, "text/plain", false);
+            String xmlString = ContentWorker.renderContentAsText(dispatcher, contentId, null, locale, "text/plain", false);
             InputStream stream = new ByteArrayInputStream(xmlString.getBytes());
             int length = xmlString.length();
             Debug.logInfo("Got resource data stream: " + length + " bytes", module);

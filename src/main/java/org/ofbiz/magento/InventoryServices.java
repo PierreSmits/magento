@@ -157,7 +157,7 @@ public class InventoryServices {
             return ServiceUtil.returnError(e.getMessage());
         }
         try {
-            String xmlString = ContentWorker.renderContentAsText(dispatcher, delegator, contentId, null, locale, "text/plain", false);
+            String xmlString = ContentWorker.renderContentAsText(dispatcher, contentId, null, locale, "text/plain", false);
             BufferedReader reader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(xmlString.getBytes())));
             String fieldDelimiter = ",";
             String fieldEncapsulator = "\"";

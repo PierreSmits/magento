@@ -1,6 +1,6 @@
 Prerequisites: You should have following setup on your machine
 
-    a. Apache OFBiz instance running with 13.07 or later release (for more details refer: http://ofbiz.apache.org/index.html)
+    a. Apache OFBiz instance running with 16.11 and 17.12 release (for more details refer: http://ofbiz.apache.org/index.html)
 
     b. A Magento instance with a Community or Enterprise edition (for more details please refer to http://www.magentocommerce.com/knowledge-base/entry/ce18-and-ee113-install-upgrade)
 
