@@ -16,11 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import org.ofbiz.entity.condition.EntityCondition;
-import org.ofbiz.entity.condition.EntityOperator;
-import org.ofbiz.entity.util.EntityUtil;
-import org.ofbiz.magento.MagentoHelper;
-import org.ofbiz.product.store.ProductStoreWorker;
+import org.apache.ofbiz.entity.condition.EntityCondition;
+import org.apache.ofbiz.entity.condition.EntityOperator;
+import org.apache.ofbiz.entity.util.EntityUtil;
+import org.apache.ofbiz.magento.MagentoHelper;
+import org.apache.ofbiz.product.store.ProductStoreWorker;
 
 magentoStoreList = MagentoHelper.getMagentoProductStoreList(delegator);
 context.magentoStoreList = magentoStoreList;

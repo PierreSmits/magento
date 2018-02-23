@@ -21,7 +21,7 @@ under the License.
 <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
     <service name="createCreditMemoInMagento" engine="java" auth="true" transaction-timeout="7200"
-            location="org.ofbiz.magento.ReturnServices" invoke="createCreditMemoInMagento">
+            location="org.apache.ofbiz.magento.ReturnServices" invoke="createCreditMemoInMagento">
         <attribute name="returnId" type="String" mode="IN"/>
         <description>Create Credit Memo In Magento For Refund Return In Magento</description>
     </service>

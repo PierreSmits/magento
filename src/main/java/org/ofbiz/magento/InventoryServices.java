@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  *******************************************************************************/
-package org.ofbiz.magento;
+package org.apache.ofbiz.magento;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -29,31 +29,31 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import javolution.util.FastList;
-import javolution.util.FastMap;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import magento.CatalogInventoryStockItemEntity;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
-import org.ofbiz.base.util.Debug;
-import org.ofbiz.base.util.GeneralException;
-import org.ofbiz.base.util.GeneralRuntimeException;
-import org.ofbiz.base.util.ObjectType;
-import org.ofbiz.base.util.UtilMisc;
-import org.ofbiz.base.util.UtilProperties;
-import org.ofbiz.base.util.UtilValidate;
-import org.ofbiz.content.content.ContentWorker;
-import org.ofbiz.entity.Delegator;
-import org.ofbiz.entity.GenericEntityException;
-import org.ofbiz.entity.GenericValue;
-import org.ofbiz.entity.condition.EntityCondition;
-import org.ofbiz.entity.condition.EntityOperator;
-import org.ofbiz.service.DispatchContext;
-import org.ofbiz.service.GenericServiceException;
-import org.ofbiz.service.LocalDispatcher;
-import org.ofbiz.service.ModelService;
-import org.ofbiz.service.ServiceUtil;
+import org.apache.ofbiz.base.util.Debug;
+import org.apache.ofbiz.base.util.GeneralException;
+import org.apache.ofbiz.base.util.GeneralRuntimeException;
+import org.apache.ofbiz.base.util.ObjectType;
+import org.apache.ofbiz.base.util.UtilMisc;
+import org.apache.ofbiz.base.util.UtilProperties;
+import org.apache.ofbiz.base.util.UtilValidate;
+import org.apache.ofbiz.content.content.ContentWorker;
+import org.apache.ofbiz.entity.Delegator;
+import org.apache.ofbiz.entity.GenericEntityException;
+import org.apache.ofbiz.entity.GenericValue;
+import org.apache.ofbiz.entity.condition.EntityCondition;
+import org.apache.ofbiz.entity.condition.EntityOperator;
+import org.apache.ofbiz.service.DispatchContext;
+import org.apache.ofbiz.service.GenericServiceException;
+import org.apache.ofbiz.service.LocalDispatcher;
+import org.apache.ofbiz.service.ModelService;
+import org.apache.ofbiz.service.ServiceUtil;
 
 public class InventoryServices {
     public static final String module = InventoryServices.class.getName();
@@ -116,11 +116,11 @@ public class InventoryServices {
         String processData = (String) context.get("processData");
         String contentId = (String) context.get("contentId");
         GenericValue userLogin = (GenericValue) context.get("userLogin");
-        List<Map<String, Object>> productFacilityLocations = FastList.newInstance();
-        List<Map<String, Object>> processedProductFacilityLocations = FastList.newInstance();
+        List<Map<String, Object>> productFacilityLocations = new ArrayList<Map<String, Object>>();
+        List<Map<String, Object>> processedProductFacilityLocations = new ArrayList<Map<String, Object>>();
         String facilityId = (String) context.get("facilityId");
 
-        Map<String, Object> serviceResult = FastMap.newInstance();
+        Map<String, Object> serviceResult = new HashMap<String, Object>();
         try {
             if (UtilValidate.isEmpty(fileName)&& "N".equalsIgnoreCase(processData)) {
                 return ServiceUtil.returnError(UtilProperties.getMessage(resource, "MagentoPleaseSelectCSVFileForImport", locale));
@@ -200,7 +200,7 @@ public class InventoryServices {
                         }
                         mappedValues.put(mappedKeys[i], value);
                     }
-                    Map<String, Object> serviceInMap = FastMap.newInstance();
+                    Map<String, Object> serviceInMap = new HashMap<String, Object>();
                     Boolean isError = false;
                     StringBuilder errorMessage = new StringBuilder();
                     String productId = (String) mappedValues.get("Product Id");
@@ -281,7 +281,7 @@ public class InventoryServices {
         } catch (GeneralException e) {
             throw new GeneralRuntimeException(UtilProperties.getMessage(resource, "MagentoErrorRenderingContent", locale)+ e.toString(), e);
         }
-        Map<String, Object> processedResult = FastMap.newInstance();
+        Map<String, Object> processedResult = new HashMap<String, Object>();
         int errorRecords=0;
         int processedRecords=0;
         if ("Y".equalsIgnoreCase(processData)) {

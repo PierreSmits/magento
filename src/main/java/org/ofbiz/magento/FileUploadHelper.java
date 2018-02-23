@@ -16,22 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  *******************************************************************************/
-package org.ofbiz.magento;
+package org.apache.ofbiz.magento;
 
 import java.util.List;
 import java.util.Map;
 
-import javolution.util.FastList;
+import java.util.ArrayList;
 
-import org.ofbiz.base.util.Debug;
-import org.ofbiz.base.util.UtilMisc;
-import org.ofbiz.base.util.UtilProperties;
-import org.ofbiz.base.util.UtilValidate;
-import org.ofbiz.entity.Delegator;
-import org.ofbiz.entity.GenericEntityException;
-import org.ofbiz.entity.GenericValue;
-import org.ofbiz.entity.condition.EntityCondition;
-import org.ofbiz.entity.util.EntityUtil;
+import org.apache.ofbiz.base.util.Debug;
+import org.apache.ofbiz.base.util.UtilMisc;
+import org.apache.ofbiz.base.util.UtilProperties;
+import org.apache.ofbiz.base.util.UtilValidate;
+import org.apache.ofbiz.entity.Delegator;
+import org.apache.ofbiz.entity.GenericEntityException;
+import org.apache.ofbiz.entity.GenericValue;
+import org.apache.ofbiz.entity.condition.EntityCondition;
+import org.apache.ofbiz.entity.util.EntityUtil;
 
 public class FileUploadHelper {
 
@@ -52,7 +52,7 @@ public class FileUploadHelper {
     }
 
     public static String getPlainCustomMessage(Map<String, Object> processedResult, int errorRecords, int processedRecords) {
-        List<String> productIds = FastList.newInstance();
+        List<String> productIds = new ArrayList<String>();
         productIds.addAll(processedResult.keySet());
         String message = "Result summary:";
         message += "\n\n";

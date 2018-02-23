@@ -18,10 +18,10 @@
  */
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import org.ofbiz.base.util.UtilProperties;
-import org.ofbiz.entity.condition.EntityCondition
-import org.ofbiz.entity.condition.EntityConditionBuilder
-import org.ofbiz.entity.condition.EntityOperator
+import org.apache.ofbiz.base.util.UtilProperties;
+import org.apache.ofbiz.entity.condition.EntityCondition
+import org.apache.ofbiz.entity.condition.EntityConditionBuilder
+import org.apache.ofbiz.entity.condition.EntityOperator
 
 HttpServletResponse response = context.response
 HttpServletRequest request = context.request

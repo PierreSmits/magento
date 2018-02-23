@@ -29,7 +29,7 @@ under the License.
     <version></version>
 
     <entity entity-name="MagentoConfiguration"
-            package-name="org.ofbiz.magento.config"
+            package-name="org.apache.ofbiz.magento.config"
             title="Magento Configuration">
         <field name="magentoConfigurationId" type="id-ne"></field> 
         <field name="productStoreId" type="id-ne"></field> 
@@ -54,7 +54,7 @@ under the License.
         </relation>
     </entity>
     <entity entity-name="MagentoProductStore"
-            package-name="org.ofbiz.magento.config"
+            package-name="org.apache.ofbiz.magento.config"
             title="Magento Product Store">
         <field name="magentoConfigurationId" type="id-ne"/> 
         <field name="productStoreId" type="id-ne"/>

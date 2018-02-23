@@ -21,7 +21,7 @@ under the License.
 <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
     <service name="fileUploadToServer" engine="java"
-            location="org.ofbiz.magento.FileUploadServices" invoke="fileUploadToServer">
+            location="org.apache.ofbiz.magento.FileUploadServices" invoke="fileUploadToServer">
         <implements service="uploadFileInterface"/>
         <attribute name="contentId" type="String" mode="OUT" optional="true"/>
         <attribute name="contentTypeId" type="String" mode="IN" optional="false"/>
@@ -29,14 +29,14 @@ under the License.
     </service>
 
     <service name="createSimpleTextContentData" engine="java"
-            location="org.ofbiz.magento.FileUploadServices" invoke="createSimpleTextContentData">
+            location="org.apache.ofbiz.magento.FileUploadServices" invoke="createSimpleTextContentData">
         <auto-attributes mode="IN" entity-name="Content" optional="true"/>
         <attribute name="text" type="String" mode="IN" optional="false" allow-html="any"/>
         <override name="contentId" mode="INOUT"/>
     </service>
 
     <service name="createErrorLogFile" engine="java"
-            location="org.ofbiz.magento.FileUploadServices" invoke="createErrorLogFile">
+            location="org.apache.ofbiz.magento.FileUploadServices" invoke="createErrorLogFile">
         <description>create new error log file based on job id</description>
         <attribute name="contentId" type="String" mode="IN" optional="false"/>
         <attribute name="serviceName" type="String" mode="IN" optional="false"/>

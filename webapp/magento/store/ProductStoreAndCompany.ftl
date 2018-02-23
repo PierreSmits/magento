@@ -91,7 +91,7 @@ under the License.
          <label for="stateProvinceGeoId">${uiLabelMap.CommonStateProvince}</label>
          <select name="stateProvinceGeoId" form="companyInfo" id="stateProvinceGeoId" class="required form-control" data-label="${uiLabelMap.CommonStateProvince}">
            <#list countryList as country>
-             <#assign stateAssocs = Static["org.ofbiz.common.CommonWorkers"].getAssociatedStateList(delegator,country.geoId)>
+             <#assign stateAssocs = Static["org.apache.ofbiz.common.CommonWorkers"].getAssociatedStateList(delegator,country.geoId)>
              <#if stateAssocs?has_content>
                <optgroup label="${country.geoId}">
                  <option value='' title=''>${uiLabelMap.CommonSelect}</option>

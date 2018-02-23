@@ -18,7 +18,7 @@ under the License.
 -->
 <html>
   <#if session.getAttribute("userLogin")?has_content>
-    <#if page.permission?has_content && page.action?has_content && !security.hasEntityPermission(page.permission, page.action, session)>
+    <#if page?has_content && page.permission?has_content && page.action?has_content && !security.hasEntityPermission(page.permission, page.action, session)>
       <#assign hasPermission = false>
     <#elseif userHasPermission?has_content && !(userHasPermission?default('N') == 'Y')>
       <#assign hasPermission = false>
@@ -63,7 +63,7 @@ under the License.
                         </select>
                       </#if>
                       <#if (magentoStoreList.size() = 1)>
-                        <#assign store = Static["org.ofbiz.entity.util.EntityUtil"].getFirst(magentoStoreList) />
+                        <#assign store = Static["org.apache.ofbiz.entity.util.EntityUtil"].getFirst(magentoStoreList) />
                         <input type="text" class="form-control" value="${store.storeName!}" disabled=disabled/>
                       </#if>
                     </#if>
@@ -83,7 +83,7 @@ under the License.
                         </select>
                       </#if>
                       <#if (facilityList.size() = 1)>
-                        <#assign facility = Static["org.ofbiz.entity.util.EntityUtil"].getFirst(facilityList) />
+                        <#assign facility = Static["org.apache.ofbiz.entity.util.EntityUtil"].getFirst(facilityList) />
                         <input type="text" class="form-control" value="${facility.facilityName!}" disabled=disabled/>
                       </#if>
                     </#if>

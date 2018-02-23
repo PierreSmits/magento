@@ -43,8 +43,8 @@ under the License.
                 <#if contentAssocMap.get(content.contentId)?has_content>
                 <#assign contentAssocList = contentAssocMap.get(content.contentId)?if_exists>
                 <#if contentAssocList?has_content>
-                  <#assign resultContent = Static["org.ofbiz.entity.util.EntityUtil"].getFirst(Static["org.ofbiz.entity.util.EntityUtil"].filterByCondition(contentAssocList, Static["org.ofbiz.entity.condition.EntityCondition"].makeCondition("caContentAssocTypeId", Static["org.ofbiz.entity.condition.EntityOperator"].EQUALS, "PROD_FAC_CSV_RESULT")))?if_exists>
-                  <#assign errorContent = Static["org.ofbiz.entity.util.EntityUtil"].getFirst(Static["org.ofbiz.entity.util.EntityUtil"].filterByCondition(contentAssocList, Static["org.ofbiz.entity.condition.EntityCondition"].makeCondition("caContentAssocTypeId", Static["org.ofbiz.entity.condition.EntityOperator"].EQUALS, "PROD_FAC_CSV_ERROR")))?if_exists>
+                  <#assign resultContent = Static["org.apache.ofbiz.entity.util.EntityUtil"].getFirst(Static["org.apache.ofbiz.entity.util.EntityUtil"].filterByCondition(contentAssocList, Static["org.apache.ofbiz.entity.condition.EntityCondition"].makeCondition("caContentAssocTypeId", Static["org.apache.ofbiz.entity.condition.EntityOperator"].EQUALS, "PROD_FAC_CSV_RESULT")))?if_exists>
+                  <#assign errorContent = Static["org.apache.ofbiz.entity.util.EntityUtil"].getFirst(Static["org.apache.ofbiz.entity.util.EntityUtil"].filterByCondition(contentAssocList, Static["org.apache.ofbiz.entity.condition.EntityCondition"].makeCondition("caContentAssocTypeId", Static["org.apache.ofbiz.entity.condition.EntityOperator"].EQUALS, "PROD_FAC_CSV_ERROR")))?if_exists>
                 </#if>
                 </#if>
                 <td><#if resultContent?has_content><a href="<@ofbizUrl>DownloadLogFile?contentId=${resultContent.caContentIdTo}</@ofbizUrl>" target="_blank">${resultContent.contentName?if_exists}</a></#if></td>

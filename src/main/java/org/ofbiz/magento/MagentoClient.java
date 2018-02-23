@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  *******************************************************************************/
-package org.ofbiz.magento;
+package org.apache.ofbiz.magento;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -107,13 +107,13 @@ import magento.StoreEntity;
 import magento.StoreInfoRequestParam;
 import magento.StoreInfoResponseParam;
 
-import org.ofbiz.base.util.Debug;
-import org.ofbiz.base.util.UtilValidate;
-import org.ofbiz.entity.Delegator;
-import org.ofbiz.entity.GenericEntityException;
-import org.ofbiz.entity.GenericValue;
-import org.ofbiz.entity.util.EntityUtil;
-import org.ofbiz.service.LocalDispatcher;
+import org.apache.ofbiz.base.util.Debug;
+import org.apache.ofbiz.base.util.UtilValidate;
+import org.apache.ofbiz.entity.Delegator;
+import org.apache.ofbiz.entity.GenericEntityException;
+import org.apache.ofbiz.entity.GenericValue;
+import org.apache.ofbiz.entity.util.EntityUtil;
+import org.apache.ofbiz.service.LocalDispatcher;
 
 public class MagentoClient {
     public static final String module = MagentoClient.class.getName();

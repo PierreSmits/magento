@@ -21,19 +21,19 @@ under the License.
 <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
     <service name="getCategoryTree" engine="java" auth="true" transaction-timeout="7200"
-            location="org.ofbiz.magento.CatalogServices" invoke="getCategoryTree">
+            location="org.apache.ofbiz.magento.CatalogServices" invoke="getCategoryTree">
         <description>Get Category Tree From Magento.</description>
     </service>
     <service name="getMagentoProducts" engine="java" auth="true" transaction-timeout="7200"
-            location="org.ofbiz.magento.CatalogServices" invoke="getMagentoProducts">
+            location="org.apache.ofbiz.magento.CatalogServices" invoke="getMagentoProducts">
         <description>Get Products From Magento.</description>
     </service>
     <service name="importMagentoProducts" engine="java" auth="true" transaction-timeout="7200"
-            location="org.ofbiz.magento.CatalogServices" invoke="importMagentoProducts">
+            location="org.apache.ofbiz.magento.CatalogServices" invoke="importMagentoProducts">
         <description>Import Magento Products.</description>
     </service>
     <service name="createMagentoProducts" engine="java" auth="true"
-            location="org.ofbiz.magento.CatalogServices" invoke="createMagentoProducts">
+            location="org.apache.ofbiz.magento.CatalogServices" invoke="createMagentoProducts">
         <description>Upload Products From Magento.</description>
         <attribute name="productId" mode="IN" type="String"/>
         <attribute name="externalId" mode="IN" type="String"/>

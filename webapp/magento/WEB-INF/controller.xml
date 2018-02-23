@@ -214,7 +214,7 @@ under the License.
     </request-map>
     <request-map uri="DownloadLogFile">
         <security auth="true" https="true" />
-        <event type="java" path="org.ofbiz.magento.LogFileEvents" invoke="downloadLogFile" />
+        <event type="java" path="org.apache.ofbiz.magento.LogFileEvents" invoke="downloadLogFile" />
         <response name="success" type="none" />
         <response name="error" type="view" value="ImportWarehouseLocation" />
     </request-map>

@@ -16,22 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  *******************************************************************************/
-package org.ofbiz.magento;
+package org.apache.ofbiz.magento;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.Map;
 
-import javolution.util.FastMap;
+import java.util.HashMap;
 
-import org.ofbiz.base.util.UtilMisc;
-import org.ofbiz.base.util.UtilValidate;
-import org.ofbiz.entity.GenericValue;
-import org.ofbiz.service.DispatchContext;
-import org.ofbiz.service.GenericServiceException;
-import org.ofbiz.service.LocalDispatcher;
-import org.ofbiz.service.ModelService;
-import org.ofbiz.service.ServiceUtil;
+import org.apache.ofbiz.base.util.UtilMisc;
+import org.apache.ofbiz.base.util.UtilValidate;
+import org.apache.ofbiz.entity.GenericValue;
+import org.apache.ofbiz.service.DispatchContext;
+import org.apache.ofbiz.service.GenericServiceException;
+import org.apache.ofbiz.service.LocalDispatcher;
+import org.apache.ofbiz.service.ModelService;
+import org.apache.ofbiz.service.ServiceUtil;
 
 public class FileUploadServices {
 
@@ -66,7 +66,7 @@ public class FileUploadServices {
             return ServiceUtil.returnError("No contentTypeId Found");
         }
         try {
-            Map<String, Object> createDataResourceCtx = FastMap.newInstance();
+            Map<String, Object> createDataResourceCtx = new HashMap<String, Object>();
             createDataResourceCtx.put("mimeTypeId", "text/plain");
             createDataResourceCtx.put("dataResourceTypeId", "ELECTRONIC_TEXT");
             createDataResourceCtx.put("userLogin", userLogin);
@@ -76,7 +76,7 @@ public class FileUploadServices {
             }
             String dataResourceId = (String) createDataResourceResp.get("dataResourceId");
             
-            Map<String, Object> createElectronicTextCtx = FastMap.newInstance();
+            Map<String, Object> createElectronicTextCtx = new HashMap<String, Object>();
             createElectronicTextCtx.put("dataResourceId", dataResourceId);
             createElectronicTextCtx.put("textData", context.get("text"));
             createElectronicTextCtx.put("userLogin", userLogin);

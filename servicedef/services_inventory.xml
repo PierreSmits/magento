@@ -21,13 +21,13 @@ under the License.
 <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/services.xsd">
     <service name="importInventoryFromMagento" engine="java" auth="true" transaction-timeout="7200"
-           location="org.ofbiz.magento.InventoryServices" invoke="importInventoryFromMagento">
+           location="org.apache.ofbiz.magento.InventoryServices" invoke="importInventoryFromMagento">
        <description>Receive inventory of each product from magento given facility</description>
        <attribute name="facilityId" type="String" mode="IN"/>
     </service>
 
     <service name="loadWarehouseLocations" engine="java" auth="true" transaction-timeout="600"
-            location="org.ofbiz.magento.InventoryServices" invoke="loadAndImportWarehouseLocations">
+            location="org.apache.ofbiz.magento.InventoryServices" invoke="loadAndImportWarehouseLocations">
         <description>Load product facility location by supplied CSV file.</description>
         <required-permissions join-type="AND">
             <check-permission permission="CATALOG" action="_CREATE"/>
@@ -43,7 +43,7 @@ under the License.
     </service>
 
     <service name="importWarehouseLocations" engine="java" auth="true" max-retry="0" transaction-timeout="7200"
-            location="org.ofbiz.magento.InventoryServices" invoke="loadAndImportWarehouseLocations">
+            location="org.apache.ofbiz.magento.InventoryServices" invoke="loadAndImportWarehouseLocations">
         <description>Create/Update product facility location by supplied CSV file.</description>
         <required-permissions join-type="AND">
             <check-permission permission="CATALOG" action="_CREATE"/>
@@ -58,7 +58,7 @@ under the License.
     </service>
 
     <service name="createUpdateProductFacilityAndLocation" engine="java" auth="true" 
-            location="org.ofbiz.magento.InventoryServices" invoke="createUpdateProductFacilityAndLocation">
+            location="org.apache.ofbiz.magento.InventoryServices" invoke="createUpdateProductFacilityAndLocation">
         <description>Create/Update product facility and locations.</description>
         <attribute name="productId" type="String" mode="IN"/>
         <attribute name="facilityId" type="String" mode="IN"/>

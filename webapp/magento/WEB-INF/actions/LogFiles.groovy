@@ -16,10 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import javolution.util.FastList;
-import org.ofbiz.entity.util.EntityUtil;
-import org.ofbiz.entity.util.EntityFindOptions;
-import org.ofbiz.entity.condition.EntityConditionBuilder;
+import java.util.ArrayList;
+import org.apache.ofbiz.entity.util.EntityUtil;
+import org.apache.ofbiz.entity.util.EntityFindOptions;
+import org.apache.ofbiz.entity.condition.EntityConditionBuilder;
 
 viewIndex = Integer.valueOf(parameters.VIEW_INDEX ?: 0);
 viewSize = Integer.valueOf(parameters.VIEW_SIZE ?: 10);
