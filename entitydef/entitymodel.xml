@@ -31,12 +31,12 @@ under the License.
     <entity entity-name="MagentoConfiguration"
             package-name="org.apache.ofbiz.magento.config"
             title="Magento Configuration">
-        <field name="magentoConfigurationId" type="id-ne"></field> 
-        <field name="productStoreId" type="id-ne"></field> 
-        <field name="enumId" type="id-ne"></field>        
+        <field name="magentoConfigurationId" type="id"></field>
+        <field name="productStoreId" type="id"></field>
+        <field name="enumId" type="id"></field>
         <!--
-        <field name="webSiteId" type="id-ne"></field>
-        <field name="prodCatalogId" type="id-ne"></field>
+        <field name="webSiteId" type="id"></field>
+        <field name="prodCatalogId" type="id"></field>
         -->
         <field name="xmlRpcUserName" type="value">
             <description>XmlRpc User</description>
@@ -56,14 +56,14 @@ under the License.
     <entity entity-name="MagentoProductStore"
             package-name="org.apache.ofbiz.magento.config"
             title="Magento Product Store">
-        <field name="magentoConfigurationId" type="id-ne"/> 
-        <field name="productStoreId" type="id-ne"/>
-        <field name="magentoDefaultStoreId" type="id-ne" />
-        <field name="magentoRootCategoryId" type="id-ne"/>
-        <field name="magentoStoreGroupId" type="id-ne"/>
+        <field name="magentoConfigurationId" type="id"/>
+        <field name="productStoreId" type="id"/>
+        <field name="magentoDefaultStoreId" type="id" />
+        <field name="magentoRootCategoryId" type="id"/>
+        <field name="magentoStoreGroupId" type="id"/>
         <prim-key field="magentoConfigurationId"/>
         <prim-key field="productStoreId"/>
-        <relation type="one" fk-name="MC_PROD_STORE" rel-entity-name="ProductStore">
+        <relation type="one" fk-name="MPS_PROD_STORE" rel-entity-name="ProductStore">
             <key-map field-name="productStoreId"/>
         </relation>
         <relation type="one" fk-name="MC_CONFIG" rel-entity-name="MagentoConfiguration">
