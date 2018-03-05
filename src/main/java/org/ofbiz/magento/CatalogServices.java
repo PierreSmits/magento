@@ -789,7 +789,8 @@ public class CatalogServices {
             }
 
             //Good Identification
-            GenericValue goodIdentification = delegator.findOne("GoodIdentification", UtilMisc.toMap("productId", productId, "goodIdentificationTypeId", "MAGENTO_ID"), false);
+            GenericValue goodIdentification = from("GoodIdentification").where("productId", productId, "goodIdentificationTypeId", "MAGENTO_ID").queryOne();
+            //GenericValue goodIdentification = delegator.findOne("GoodIdentification", UtilMisc.toMap("productId", productId, "goodIdentificationTypeId", "MAGENTO_ID"), false);
             if(UtilValidate.isEmpty(goodIdentification)) {
                 serviceInMap.put("productId", productId);
                 serviceInMap.put("goodIdentificationTypeId", "MAGENTO_ID");

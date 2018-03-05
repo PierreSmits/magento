@@ -48,7 +48,7 @@ if(magentoStoreList) {
 
             magentoStoreAddressContent = EntityUtil.getFirst(delegator.findList("PartyContent", EntityCondition.makeCondition("partyContentTypeId", "MAGENTO_STORE_ADDR"), null, null, null, false));
             if (magentoStoreAddressContent) {
-                contentMapFacade = new ContentMapFacade(dispatcher, delegator, magentoStoreAddressContent.contentId, [:], locale, "text/html", true);
+                contentMapFacade = new ContentMapFacade(dispatcher, magentoStoreAddressContent, [:], locale, "text/html", true);
                 context.contentMapFacade = contentMapFacade;
             }
 

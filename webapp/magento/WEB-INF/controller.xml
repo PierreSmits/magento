@@ -17,12 +17,20 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<site-conf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ofbiz.apache.org/Site-Conf"
-           xsi:schemaLocation="http://ofbiz.apache.org/Site-Conf http://ofbiz.apache.org/dtds/site-conf.xsd">
+<site-conf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/site-conf.xsd">
     <!-- The controller elements that are common to all OFBiz components
          can be found in the following xml file. A component can override the
          elements found in the common-controller.xml file. -->
     <include location="component://common/webcommon/WEB-INF/common-controller.xml"/>
+
+    <request-map uri="login">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.apache.ofbiz.webapp.control.LoginWorker" invoke="login"/>
+        <response name="success" type="request-redirect" value="main"/>
+        <response name="error" type="view" value="login"/>
+        <response name="requirePasswordChange" type="request" value="requirePasswordChange"/>
+    </request-map>
 
     <request-map uri="main">
         <security https="true" auth="true"/>
