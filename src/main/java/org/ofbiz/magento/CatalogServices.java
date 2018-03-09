@@ -55,6 +55,7 @@ import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.entity.condition.EntityCondition;
 import org.apache.ofbiz.entity.util.EntityUtil;
+import org.apache.ofbiz.entity.util.EntityQuery;
 import org.apache.ofbiz.product.catalog.CatalogWorker;
 import org.apache.ofbiz.service.DispatchContext;
 import org.apache.ofbiz.service.GenericServiceException;
@@ -789,7 +790,7 @@ public class CatalogServices {
             }
 
             //Good Identification
-            GenericValue goodIdentification = from("GoodIdentification").where("productId", productId, "goodIdentificationTypeId", "MAGENTO_ID").queryOne();
+            GenericValue goodIdentification = EntityQuery.use(delegator).from("GoodIdentification").where("productId", productId, "goodIdentificationTypeId", "MAGENTO_ID").queryOne();
             //GenericValue goodIdentification = delegator.findOne("GoodIdentification", UtilMisc.toMap("productId", productId, "goodIdentificationTypeId", "MAGENTO_ID"), false);
             if(UtilValidate.isEmpty(goodIdentification)) {
                 serviceInMap.put("productId", productId);
