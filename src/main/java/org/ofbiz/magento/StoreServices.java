@@ -105,6 +105,14 @@ public class StoreServices {
                         return ServiceUtil.returnError(ServiceUtil.getErrorMessage(result));
                     }
                 }
+
+                //Create Relationship of logged in user with Company
+                serviceCtx.put("partyIdFrom", partyId);
+                serviceCtx.put("partyIdTo", userLogin.get("partyId"));
+                serviceCtx.put("roleTypeIdFrom", "INTERNAL_ORGANIZATIO");
+                serviceCtx.put("roleTypeIdTo", "APPLICATION_USER");
+                serviceCtx.put("partyRelationshipTypeId", "OWNER");
+                result = dispatcher.runSync("createPartyRelationship", serviceCtx);
             }
 
             serviceCtx.clear();

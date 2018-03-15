@@ -790,12 +790,13 @@ public class CatalogServices {
             }
 
             //Good Identification
-            GenericValue goodIdentification = EntityQuery.use(delegator).from("GoodIdentification").where("productId", productId, "goodIdentificationTypeId", "MAGENTO_ID").queryOne();
+            GenericValue goodIdentification = EntityQuery.use(delegator).from("GoodIdentification").where("productId", productId, "goodIdentificationTypeId", "MAGENTO_ID").filterByDate().queryFirst();
             //GenericValue goodIdentification = delegator.findOne("GoodIdentification", UtilMisc.toMap("productId", productId, "goodIdentificationTypeId", "MAGENTO_ID"), false);
             if(UtilValidate.isEmpty(goodIdentification)) {
                 serviceInMap.put("productId", productId);
                 serviceInMap.put("goodIdentificationTypeId", "MAGENTO_ID");
                 serviceInMap.put("idValue", context.get("externalId"));
+                serviceInMap.put("fromDate", UtilDateTime.nowTimestamp());
                 serviceInMap.put("userLogin", context.get("userLogin"));
                 serviceOutMap = dispatcher.runSync("createGoodIdentification", serviceInMap);
                 if(ServiceUtil.isError(serviceOutMap)) {

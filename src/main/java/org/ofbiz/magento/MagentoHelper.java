@@ -309,10 +309,8 @@ public class MagentoHelper {
         Map<String, Object> serviceCtx = new HashMap<String, Object>();
         Map<String, Object> serviceResult = new HashMap<String, Object>();
         serviceCtx.put("orderId", orderId);
-        serviceCtx.put("statusId", "ORDER_APPROVED");
-        serviceCtx.put("setItemStatus", "Y");
         serviceCtx.put("userLogin", system);
-        serviceResult = dispatcher.runSync("changeOrderStatus", serviceCtx);
+        serviceResult = dispatcher.runSync("approveSalesOrder", serviceCtx);
 
         if(ServiceUtil.isError(serviceResult)) {
             Debug.log("=====Problem in approving the order. Following order is not approved========="+ orderId);

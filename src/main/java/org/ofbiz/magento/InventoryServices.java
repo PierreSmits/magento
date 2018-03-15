@@ -49,6 +49,7 @@ import org.apache.ofbiz.entity.GenericEntityException;
 import org.apache.ofbiz.entity.GenericValue;
 import org.apache.ofbiz.entity.condition.EntityCondition;
 import org.apache.ofbiz.entity.condition.EntityOperator;
+import org.apache.ofbiz.entity.util.EntityQuery;
 import org.apache.ofbiz.service.DispatchContext;
 import org.apache.ofbiz.service.GenericServiceException;
 import org.apache.ofbiz.service.LocalDispatcher;
@@ -216,7 +217,7 @@ public class InventoryServices {
                         isError = true;
                     }
                     if(UtilValidate.isNotEmpty(productId)) {
-                        GenericValue goodIdentification = delegator.findOne("GoodIdentification", UtilMisc.toMap("productId", productId, "goodIdentificationTypeId", "MAGENTO_ID"), true);
+                        GenericValue goodIdentification = EntityQuery.use(delegator).from("GoodIdentification").where("productId", productId, "goodIdentificationTypeId", "MAGENTO_ID").filterByDate().cache().queryFirst();
                         if(UtilValidate.isEmpty(goodIdentification)) {
                             errorMessage.append(UtilProperties.getMessage(resource, "MagentoErrorProductNotFound",UtilMisc.toMap("productId", productId), locale));
                             isError = true;
