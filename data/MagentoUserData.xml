@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <!-- Admin User data -->
+    <Party partyId="magentoAdmin" partyTypeId="PERSON"/>
+    <Person firstName="Magento" lastName="Admin" partyId="magentoAdmin"/>
+
+    <PartyRole partyId="magentoAdmin" roleTypeId="CONTACT"/>
+
+    <ContactMech contactMechId="magentoAdmin" contactMechTypeId="EMAIL_ADDRESS" infoString="magento_admin@example.com"/>
+    <PartyContactMech partyId="magentoAdmin" contactMechId="admin" fromDate="2001-01-01 12:00:00.000" allowSolicitation="Y"/>
+    <PartyContactMechPurpose contactMechPurposeTypeId="PRIMARY_EMAIL" partyId="magentoAdmin" contactMechId="magentoAdmin" fromDate="2001-01-01 12:00:00.000"/>
+
+    <UserLogin userLoginId="magento_admin" partyId="magentoAdmin" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" enabled="Y" hasLoggedOut="N"/>
+    <UserLoginSecurityGroup userLoginId="magento_admin" groupId="SUPER" fromDate="2001-01-01 12:00:00.000"/>
+
+</entity-engine-xml>
